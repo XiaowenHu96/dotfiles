@@ -3,6 +3,11 @@ call plug#begin('~/.vim/plugged')
 " Things you can do with fzf and Vim.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+"Config:
+" Searching File
+map <Leader>sf :Files <CR>
+" Searching Marks
+map <Leader>sm :Marks <CR>
 
 
 " A tree explorer plugin for vim.
@@ -321,9 +326,6 @@ augroup AutoSaveFolds
     autocmd BufWinLeave * silent! mkview
     autocmd BufWinEnter * silent! loadview
 augroup END
-
-" Map <leader>ff to FZF.vim
-map <Leader>ff :Files <CR>
 
 " This is nuts, check link for color scheme and change them!
 " https://yanpritzker.com/how-to-change-vim-syntax-colors-that-are-annoying-you-13ce55948760

@@ -17,6 +17,7 @@ import XMonad.Util.Run
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicProperty
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Grid
 import XMonad.Layout.Renamed
@@ -345,7 +346,7 @@ main = do
   -- Start xmobar
   xmproc <- spawnPipe "/usr/bin/xmobar /home/xiaowen/.config/xmobar/xmobarcc" 
   -- Run xmonad with setting
-  xmonad $ docks def 
+  xmonad $ ewmh $ docks def 
     {
         -- simple stuff
           terminal           = myTerminal,

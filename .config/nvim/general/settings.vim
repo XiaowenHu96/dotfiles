@@ -36,8 +36,8 @@ set clipboard=unnamedplus
 set visualbell
 set novb
 
-" Support 256 colors
-" No need to set for neovim, also, do not use 'set termguicolors'
+" 'Set termguicolors' to use terminal color
+set termguicolors
 
 " Let vim search tags file until meet root (nvim does that by default)
 set tags=tags;/ 
@@ -45,8 +45,7 @@ set tags=tags;/
 " leader key timeout
 set timeoutlen=500 
 
-" set colorscheme
-colorscheme onedark
+" set colorscheme in seperate theme file
 
 " For airline
 set laststatus=2

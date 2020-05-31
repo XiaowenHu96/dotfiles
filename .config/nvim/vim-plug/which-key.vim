@@ -56,12 +56,15 @@ let g:which_key_map.l = {
       \ 's' :  [":call LanguageClient#textDocument_documentSymbol()<CR>", "document symbol"],
       \ }
 
-" S for Spell
+" S for Spell/Sessions
 let g:which_key_map.S = {
       \ 'name' : '+Spell' ,
-      \ 'o' :  [":set spell spelllang=en_us"                , "on"],
-      \ 'q' :  [":set spell spelllang="                     , "off"],
-      \ 's' :  ["z="                                        , "correction"],
+      \ 'o' :  [":set spell spelllang=en_us"                , "spell on"],
+      \ 'q' :  [":set spell spelllang="                     , "spell off"],
+      \ 's' :  ["z="                                        , "spell correction"],
+      \ 'a' :  [":SSave!"                                   , "add/save session"],
+      \ 'd' :  [":SDelete!"                                 , "delete session"],
+      \ 'l' :  [":SLoad"                                    , "load session"],
       \ }
 
 " d for dotfiles
@@ -69,13 +72,45 @@ let g:which_key_map.d = {
       \ 'name' : '+dotfiles' ,
       \ 'v' :  [":tabe $HOME/.config/nvim/general/settings.vim"                       , "general settings"],
       \ 'V' :  [":tabe $MYVIMRC"                                                      , "init vim"],
-      \ 'k' :  [":take $HOME/.config/nvim/vim-plug/which-key.vim"                     , "which-keys binding"],
+      \ 'k' :  [":tabe $HOME/.config/nvim/vim-plug/which-key.vim"                     , "which-keys binding"],
       \ 'K' :  [":tabe $HOME/.config/nvim/keys/keys.vim"                              , "general key-binding"],
       \ 'x' :  [":tabe $HOME/.xmonad/xmonad.hs"                                       , "xmonad"],
       \ 'X' :  [":tabe $HOME/.config/xmobar/xmobarcc"                                 , "xmobar"],
       \ 'z' :  [":tabe $HOME/.zshrc"                                                  , "zshrc"],
       \ 'r' :  [":resource $MYVIMRC"                                                  , "reload config"],
       \ 'p' :  [":tabe $HOME/.config/nvim/vim-plug/plugins.vim"                       , "plugins"],
+      \ 'P' :  [":FloatFiles $HOME/.config/nvim/vim-plug/"                            , "plugins-dir"],
+      \ }
+
+" f for files
+let g:which_key_map.f = {
+      \ 'name' : '+files' ,
+      \ 'f' :  [":FloatFiles"                       , "fuzzy file"],
+      \ 'r' :  [":RnvimrToggle"                     , "ranger"],
+      \ 'b' :  [":FloatHistory"                     , "buffer"],
+      \ 'au' : [":UltiSnipsEdit"                    , "add ultisnips"],
+      \ }
+
+" L for Latex
+let g:which_key_map.L = {
+      \ 'name' : '+LaTeX' ,
+      \ 'c' :  [":VimtexClean"                       , "clean"],
+      \ 'C' :  [":VimtexClean!"                      , "clean pdf"],
+      \ 'v' :  [":VimtexView"                        , "view"],
+      \ 'r' :  [":VimTexRSearch"                     , "reverse search"],
+      \ 'e' :  [":VimtexError"                       , "check error"],
+      \ 'l' :  [":VimtexCompile"                     , "toggle compile"],
+      \ 'L' :  [":VimtexCompile"                     , "toggle compile"],
+      \ }
+
+" U for UltiSnips
+let g:which_key_map.U = {
+      \ 'name' : '+UltiSnips' ,
+      \ 'u' :  [":call UltiSnips#ExpandSnippet()"                       , "expand snips"],
+      \ 'l' :  [":call UltiSnips#ListSnippet()"                         , "list snips"],
+      \ 'n' :  [":call UltiSnips#JumpForwards()"                        , "jump forward"],
+      \ 'N' :  [":call UltiSnips#JumpBackwards()"                       , "jump backward"],
+      \ 'a' :  [":UltiSnipsEdit"                                        , "add snippet"],
       \ }
 
 call which_key#register('<Space>', "g:which_key_map")

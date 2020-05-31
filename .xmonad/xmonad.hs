@@ -159,8 +159,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask, xK_u), withFocused (sendMessage . UnMerge))
 
     -- , . to switch prev / next tabs
-    , ((modm,              xK_period), onGroup W.focusUp')
-    , ((modm,              xK_comma), onGroup W.focusDown')
+    , ((modm,              xK_comma), onGroup W.focusUp')
+    , ((modm,              xK_period), onGroup W.focusDown')
 
     -- Push window back into tiling
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)

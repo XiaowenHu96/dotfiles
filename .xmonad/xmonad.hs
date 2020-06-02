@@ -23,6 +23,7 @@ import XMonad.Layout.Grid
 import XMonad.Layout.Renamed
 import XMonad.Layout.Tabbed
 import XMonad.Layout.SubLayouts
+import XMonad.Layout.Simplest
 import XMonad.Layout.WindowNavigation
 import XMonad.Layout.BoringWindows 
 import XMonad.Prompt
@@ -233,6 +234,7 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- 1. Boring windows help to skip tabbed windows in tab layout.
 --    The keybindings changes from W.movement to boringWindows.movement
 --    Not sure if it going to bring any sub-effect...
+
 myLayout = boringWindows (tiled ||| grid ||| tabbed ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
@@ -242,7 +244,8 @@ myLayout = boringWindows (tiled ||| grid ||| tabbed ||| Mirror tiled ||| Full)
      grid    = renamed [XMonad.Layout.Renamed.Replace "grid"] $ GridRatio (16/10)
 
      -- tabbed layout, for reading pdfs..
-     tabbed  = renamed [XMonad.Layout.Renamed.Replace "tabs"] $ windowNavigation $ subTabbed $ ResizableTall nmaster delta ratio []
+     tabbed  = renamed [XMonad.Layout.Renamed.Replace "tabs"] $ windowNavigation 
+                  $ addTabs  shrinkText tab_config $ subLayout [] Simplest $ ResizableTall nmaster delta ratio []
 
      -- The default number of windows in the master pane
      nmaster = 1
@@ -252,6 +255,15 @@ myLayout = boringWindows (tiled ||| grid ||| tabbed ||| Mirror tiled ||| Full)
 
      -- Percent of screen to increment by when resizing panes
      delta   = 3/100
+
+     -- Xmonad need to be restart to see effect.
+     tab_config = defaultTheme { 
+                  activeColor = "#404552", inactiveColor = "#383c4a", 
+                  activeBorderColor = "#5294e2", inactiveBorderColor = "#383c4a",
+                  activeTextColor = "#dedede", inactiveTextColor = "#7f7f7f"
+                  -- TODO set a font and size.
+                  }
+
 
 ------------------------------------------------------------------------
 -- Window rules:
@@ -282,7 +294,7 @@ myManageHook = composeAll
     -- Skype
     , className =? "Skype"          --> doShift (myWorkspaces !! 3)
     -- Zoom
-    , className =? "zoom"          --> doShift (myWorkspaces !! 3)
+    -- , className =? "zoom"          --> doShift (myWorkspaces !! 3)
     -- Spotify not done. Xiaowen: Stupid spotify ignore ICCCM, don't know how to fix
     -- https://bbs.archlinux.org/viewtopic.php?id=204636
     --

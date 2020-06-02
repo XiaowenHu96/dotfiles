@@ -14,7 +14,7 @@ let g:startify_lists = [
 
 " If this option is enabled and you start Vim in a directory that contains a 'Session.vim',
 " that session will be loaded automatically. Otherwise it will be shown as the top entry in the Startify buffer."
-let g:startify_session_autoload = 0 " 0 for off
+let g:startify_session_autoload = 0
 
 " Location to save me session
 let g:startify_session_dir = '~/.config/nvim/session'

@@ -41,6 +41,9 @@ let g:rnvimr_pick = 1              " Make Ranger to be hidden after pick a file
 " consider disable if performance is hurt.
 source $HOME/.config/nvim/vim-plug/airline.vim
 
+" Auto-pair
+source $HOME/.config/nvim/vim-plug/auto-pair.vim
+
 " fzf-vim
 source $HOME/.config/nvim/vim-plug/fzf-vim.vim
 

@@ -60,9 +60,9 @@ augroup TexFileSetting
     " Set maximum line length when working in tex file
     autocmd FileType tex setlocal textwidth=79 fo+=l
 
-    " When enter new line, auto warp the text
-    " TODO: need a if-test on text number
-    "autocmd BufWinEnter *.tex inoremap <buffer> <cr> <esc>gqqo
+    " Map shift-enter to formatting.
+    " Note: keep an eye on it, maybe buggy.
+    autocmd FileType tex inoremap <buffer> <expr><cr> TexFormatIsEOL() ? "<esc>gqqA\<cr>" : "\<cr>"
     
     " Open spell checker when enter tex
     autocmd FileType tex setlocal spell spelllang=en_us
@@ -76,3 +76,7 @@ augroup TexFileSetting
     autocmd FileType tex inoremap <buffer> $$ $$$$<left><left>
 
 augroup END
+
+function TexFormatIsEOL()
+    return col(".") == col("$")
+endfunction

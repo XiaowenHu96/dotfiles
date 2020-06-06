@@ -1,6 +1,6 @@
 ### TODO: 
-1. nvim: rice auto-pair in latex.
-2. nvim: Should I try CoC?
-3. ranger: Learn more.
-4. xmonad: tab font, size
-4. nvim: change latex font (To mono or sth)
+1. Maybe try some other terminal, konsole is fine but configuration file is not very portable.
+    1. I want scroll, easy copy-paste.
+    2. Support for fancy font.
+    3. Easily portable (st may be excluded?)
+2. Fix spacing between tab.

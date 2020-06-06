@@ -26,6 +26,7 @@ import XMonad.Layout.SubLayouts
 import XMonad.Layout.Simplest
 import XMonad.Layout.WindowNavigation
 import XMonad.Layout.BoringWindows 
+import XMonad.Layout.Spacing
 import XMonad.Prompt
 import XMonad.Prompt.XMonad
 
@@ -72,7 +73,7 @@ myWorkspaces    = ["\xf120","\xe62b", "\xf7ae","\xf27b", "5", "6", "7", "8", "9"
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#ff0000"
+myFocusedBorderColor = "#5294e2"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -92,13 +93,19 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- Toggle docks (like xmobar).
-    , ((modm,               xK_b     ), sendMessage ToggleStruts)
+    , ((modm,               xK_b     ), do sendMessage ToggleStruts
+                                           toggleScreenSpacingEnabled
+                                           toggleWindowSpacingEnabled
+                                          )
 
     -- launch dmenu
     , ((modm,               xK_p     ), spawn myDmenu)
 
     -- launch gmrun
     -- , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+
+    -- launch screen capture.
+    , ((modm,               xK_Print ), spawn "flameshot gui")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -238,13 +245,13 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 myLayout = boringWindows (tiled ||| grid ||| tabbed ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
-     tiled   = renamed [XMonad.Layout.Renamed.Replace "tall"] $ ResizableTall nmaster delta ratio []
+     tiled   = renamed [XMonad.Layout.Renamed.Replace "tall"] $ enableSpacing $  ResizableTall nmaster delta ratio []
 
      -- grid layout, usefull for putting skype, wechat, sportify ..
-     grid    = renamed [XMonad.Layout.Renamed.Replace "grid"] $ GridRatio (16/10)
+     grid    = renamed [XMonad.Layout.Renamed.Replace "grid"] $ enableSpacing $ GridRatio (16/10)
 
      -- tabbed layout, for reading pdfs..
-     tabbed  = renamed [XMonad.Layout.Renamed.Replace "tabs"] $ windowNavigation 
+     tabbed  = renamed [XMonad.Layout.Renamed.Replace "tabs"] $ enableSpacing $ windowNavigation 
                   $ addTabs  shrinkText tab_config $ subLayout [] Simplest $ ResizableTall nmaster delta ratio []
 
      -- The default number of windows in the master pane
@@ -256,12 +263,17 @@ myLayout = boringWindows (tiled ||| grid ||| tabbed ||| Mirror tiled ||| Full)
      -- Percent of screen to increment by when resizing panes
      delta   = 3/100
 
+     -- Spacing config
+     enableSpacing = spacingRaw True (Border 12 6 6 6) True (Border 0 12 6 6) True
+
      -- Xmonad need to be restart to see effect.
+     -- Mostly arc theme
      tab_config = defaultTheme { 
                   activeColor = "#404552", inactiveColor = "#383c4a", 
-                  activeBorderColor = "#5294e2", inactiveBorderColor = "#383c4a",
-                  activeTextColor = "#dedede", inactiveTextColor = "#7f7f7f"
-                  -- TODO set a font and size.
+                  activeBorderColor = myFocusedBorderColor, inactiveBorderColor = "#383c4a",
+                  activeTextColor = "#dddddd", inactiveTextColor = "#7f7f7f",
+                  fontName = "xft:JetBrainsMono Nerd Font Mono:size=12",
+                  decoHeight = 25
                   }
 
 
@@ -344,6 +356,8 @@ myStartupHook = do
   spawnOnce "blueman-applet &"
   -- fcitx applet
   spawnOnce "fcitx &"
+  -- notification daemon
+  spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon &"
   -- trayer, manage applet icons
   spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x292d3e --height 20 &"
   -- picom transparcy

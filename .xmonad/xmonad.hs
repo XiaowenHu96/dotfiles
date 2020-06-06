@@ -37,7 +37,7 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "konsole" -- set default terminal
+myTerminal      = "st" -- set default terminal
 myDmenu         = "dmenu_run -fn 'Fira Code Medium:size=15' -c -l 20 -i" -- font, center, lines, case-insensitive
 
 -- Whether focus follows the mouse pointer.

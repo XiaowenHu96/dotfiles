@@ -1,0 +1,10 @@
+set selection-clipboard clipboard
+set window-title-basename true
+map P toggle_presentation
+map [presentation] P toggle_presentation
+set highlight-transparency 0.2
+set highlight-active-color "#D19A66"
+set synctex true
+
+" Support for backward search with vimtex
+set synctex-editor-command "nvr --remote-slient +"%line" "%file" "

@@ -107,6 +107,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch screen capture.
     , ((modm,               xK_Print ), spawn "flameshot gui")
 
+    -- launch ranger at home dir.
+    -- Most of terminal should use -e flag to execute given command.
+    , ((modm .|. shiftMask, xK_f ),     spawn $ myTerminal ++ " -e ranger ~")
+
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
 
@@ -251,8 +255,9 @@ myLayout = boringWindows (tiled ||| grid ||| tabbed ||| Mirror tiled ||| Full)
      grid    = renamed [XMonad.Layout.Renamed.Replace "grid"] $ enableSpacing $ GridRatio (16/10)
 
      -- tabbed layout, for reading pdfs..
-     tabbed  = renamed [XMonad.Layout.Renamed.Replace "tabs"] $ enableSpacing $ windowNavigation 
-                  $ addTabs  shrinkText tab_config $ subLayout [] Simplest $ ResizableTall nmaster delta ratio []
+     -- Put enableSpacing before addTabs so that tabbar size is correctly determined.
+     tabbed  = renamed [XMonad.Layout.Renamed.Replace "tabs"] $  windowNavigation 
+                  $ addTabs  shrinkText tab_config $ subLayout [] Simplest $ enableSpacing $ ResizableTall nmaster delta ratio []
 
      -- The default number of windows in the master pane
      nmaster = 1

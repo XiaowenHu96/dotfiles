@@ -172,7 +172,6 @@ let g:vimtex_view_general_options_latexmk = '--unique'
 " Support backward search form neo-vim
 let g:vimtext_compiler_progname="nvr"
 
-
 " Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support.
 " Note: I disable ALE because it seems like to have less support than
 " LanguageClient-Server.

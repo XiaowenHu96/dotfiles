@@ -50,6 +50,9 @@ set timeoutlen=500
 " For airline
 set laststatus=2
 
+" Filetype
+filetype on
+
 " Auto save view when exit file and auto load view when open
 augroup AutoSaveFolds
     autocmd!

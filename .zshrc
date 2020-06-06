@@ -136,3 +136,5 @@ colorscript random
 alias vrc='nvim ~/.vimrc'
 
 source /home/xiaowen/.config/broot/launcher/bash/br
+# Set up nvr server name
+export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim

@@ -1,9 +1,25 @@
+"
+" I use vimtex for building latex.
+" And texlab for linting, completion.
+"
+" Vimtex is great for building, getting feedback but not so good 
+" for providing completion, linting.
+"
+"
+
 let g:tex_flavor = "latex"
-let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-let g:vimtex_view_general_options_latexmk = '--unique'
-" Support backward search form neo-vim
+let g:vimtex_view_method = 'zathura'
 let g:vimtext_compiler_progname="nvr"
+
+
+" Note: The Zathura and MuPDF viewers, if used, add a hook to this list in
+"       order to store the viewer X window ID in order to prevent multiple
+"       viewer windows. (See help vim-tex)
+let g:vimtex_compiler_callback_hooks = ['ZathuraHook']
+
+function! ZathuraHook(status)
+  echom a:status
+endfunction
 
 " Basic compile flags
 let g:vimtex_compiler_latexmk = {
@@ -42,11 +58,21 @@ let g:vimtex_quickfix_latexlog = {
 augroup TexFileSetting
     autocmd!
     " Set maximum line length when working in tex file
-    " using FileType doesn't seem to work.
-    autocmd BufWinEnter *.tex setlocal textwidth=79 fo+=l
+    autocmd FileType tex setlocal textwidth=79 fo+=l
+
     " When enter new line, auto warp the text
     " TODO: need a if-test on text number
     "autocmd BufWinEnter *.tex inoremap <buffer> <cr> <esc>gqqo
+    
     " Open spell checker when enter tex
-    autocmd BufWinEnter *.tex setlocal spell spelllang=en_us
+    autocmd FileType tex setlocal spell spelllang=en_us
+
+    " Add some customized autopairs
+    " \( -> \(<cursor>\)
+    autocmd FileType tex inoremap <buffer> \( \(\)<left><left>
+    " $ -> $cursor$
+    autocmd FileType tex inoremap <buffer> $ $$<left>
+    " $$ -> $$cursor$$
+    autocmd FileType tex inoremap <buffer> $$ $$$$<left><left>
+
 augroup END

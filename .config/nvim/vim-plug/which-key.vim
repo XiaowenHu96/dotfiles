@@ -45,15 +45,14 @@ let g:which_key_map.s = {
 " l for langauge
 let g:which_key_map.l = {
       \ 'name' : '+langauge' ,
-      \ 'c' :  [":call LanguageClient_contextMenu()<CR>"                , "context menu"],
-      \ 'e' :  [":call LanguageClient#explainErrorAtPoint()<CR>"        , "explain error"],
-      \ 'h' :  [":call LanguageClient#textDocument_hover()<CR>"         , "display hover"],
-      \ 'g' :  [":call LanguageClient#textDocument_definition()<CR>"    , "goto definition"],
-      \ 'r' :  [":call LanguageClient#textDocument_rename()<CR>"        , "rename variable"],
-      \ 'f' :  [":call LanguageClient#textDocument_formatting()<CR>"    , "format code"],
-      \ 'b' :  [":call LanguageClient#textDocument_references()<CR>"    , "find all references"],
-      \ 'a' :  [":call LanguageClient#textDocument_codeAction()<CR>"    , "code action"],
-      \ 's' :  [":call LanguageClient#textDocument_documentSymbol()<CR>", "document symbol"],
+      \ 'g' :  ["<Plug>(coc-definition)"                       , "goto definition"],
+      \ 'd' :  ["<Plug>(coc-declaration)"                      , "goto declartion"],
+      \ 'r' :  ["<Plug>(coc-references)"                       , "find all references"],
+      \ 'h' :  [":call CocAction('doHover')"                   , "show documentation"],
+      \ 'b' :  ["<Plug>(coc-rename)"                           , "rename symbol"],
+      \ 'f' :  ["<Plug>(coc-format)"                           , "format code"],
+      \ 'F' :  ["<Plug>(coc-format-selected)"                  , "format selected"],
+      \ 'a' :  ["<Plug>(coc-codeaction-line)"                  , "code action"],
       \ }
 
 " S for Spell/Sessions
@@ -80,6 +79,8 @@ let g:which_key_map.d = {
       \ 'r' :  [":resource $MYVIMRC"                                                  , "reload config"],
       \ 'p' :  [":tabe $HOME/.config/nvim/vim-plug/plugins.vim"                       , "plugins"],
       \ 'P' :  [":FloatFiles $HOME/.config/nvim/vim-plug/"                            , "plugins-dir"],
+      \ 'c' :  [":FloatFiles $HOME/.config/"                                          , "configs-dir"],
+      \ 'C' :  [":CocConfig"                                                          , "coc-config"],
       \ }
 
 " f for files

@@ -48,7 +48,7 @@ source $HOME/.config/nvim/vim-plug/fzf-vim.vim
 source $HOME/.config/nvim/vim-plug/vimtex.vim
 
 " LanguageClient-neovim
-source $HOME/.config/nvim/vim-plug/LanguageClient-neovim.vim
+" source $HOME/.config/nvim/vim-plug/LanguageClient-neovim.vim
 
 " nvim-colorizer
 luafile $HOME/.config/nvim/vim-plug/nvim-colorizer.lua
@@ -58,6 +58,9 @@ source $HOME/.config/nvim/vim-plug/ultisnips.vim
 
 " vim-startify
 source $HOME/.config/nvim/vim-plug/vim-startify.vim
+
+" Coc.nvim
+source $HOME/.config/nvim/vim-plug/coc.vim
 
 " Finally load which-key
 source $HOME/.config/nvim/vim-plug/which-key.vim

@@ -11,23 +11,15 @@ Plug 'airblade/vim-gitgutter'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Minimal completion engine.
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-    Plug 'Shougo/deoplete.nvim'
-    " Dependecy for deoplete to run on vim only. Install them anyway.
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-" Minimal file exploer
-if has('nvim')
-    Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-    Plug 'Shougo/defx.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
+" Note: I moved to Coc.
+" if has('nvim')
+"     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"     Plug 'Shougo/deoplete.nvim'
+"     " Dependecy for deoplete to run on vim only. Install them anyway.
+"     Plug 'roxma/nvim-yarp'
+"     Plug 'roxma/vim-hug-neovim-rpc'
+" endif
 
 " Ranger file exploer
 " Note: This is a less famous plugin, may have dev issue.
@@ -62,7 +54,7 @@ Plug 'tpope/vim-repeat'
 Plug 'vim-scripts/ReplaceWithRegister'
 
 " Auto closeof quotes, parenthesis, brackets, etc.
-Plug 'Raimondi/delimitMate'
+" Plug 'Raimondi/delimitMate'
 
 " Vim airline theme
 Plug 'vim-airline/vim-airline'
@@ -83,10 +75,11 @@ Plug 'XiaowenHu96/onedark.vim', { 'branch': 'ALESupport' }
 Plug 'https://github.com/lervag/vimtex'
 
 " LanguageClient-Neovim support Vim and NVim with LSP.
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh'
-    \ }
+" Note: I moved to Coc LSP
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh'
+"     \ }
 
 " Vim-slime, send buffer to terminal.
 Plug 'jpalardy/vim-slime'
@@ -103,5 +96,11 @@ Plug 'SirVer/ultisnips'
 
 " The fancy start screen for Vim. (Also a session manager)
 Plug 'mhinz/vim-startify'
+
+" coc: Use release branch (recommend)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" vim plugin, insert or delete brackets, parens, quotes in pair 
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()

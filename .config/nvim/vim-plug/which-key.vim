@@ -57,7 +57,7 @@ let g:which_key_map.l = {
 
 " S for Spell/Sessions
 let g:which_key_map.S = {
-      \ 'name' : '+Spell' ,
+      \ 'name' : '+Sessions/Spell' ,
       \ 'o' :  [":set spell spelllang=en_us"                , "spell on"],
       \ 'q' :  [":set spell spelllang="                     , "spell off"],
       \ 's' :  ["z="                                        , "spell correction"],

@@ -2,11 +2,11 @@
 -- Use flaticon to find nice icon :)
 -- Or use AwesomeFont to find icon, it much nicer and easy to intergate with any theme.
 
-Config { font    = "xft:FiraCode Nerd Font:style=Medium:pixelsize=13:bold:antialias=true"
+Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=13:bold:antialias=true"
        -- After install fontAwesome, make sure the font name is correct 
        -- by using fc-list | grep "Awesome" (arch)
        , additionalFonts = [ "xft:Font Awesome 5 Free Solid:style=Solid:pixelsize=13", "xft:Font Awesome 5 Free Regular:style=Regular:pixelsize=13"]
-       , bgColor = "#282A36"
+       , bgColor = "#383c4a"
        , fgColor = "#B45BCF"
        , position = Top
        , lowerOnStart = True

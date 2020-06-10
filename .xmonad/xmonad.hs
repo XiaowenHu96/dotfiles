@@ -277,7 +277,7 @@ myLayout = boringWindows (tiled ||| grid ||| tabbed ||| Mirror tiled ||| Full)
                   activeColor = "#404552", inactiveColor = "#383c4a", 
                   activeBorderColor = myFocusedBorderColor, inactiveBorderColor = "#383c4a",
                   activeTextColor = "#dddddd", inactiveTextColor = "#7f7f7f",
-                  fontName = "xft:JetBrainsMono Nerd Font Mono:size=12",
+                  fontName = "xft:JetBrainsMono Nerd Font:size=12",
                   decoHeight = 25
                   }
 
@@ -364,7 +364,7 @@ myStartupHook = do
   -- notification daemon
   spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon &"
   -- trayer, manage applet icons
-  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x292d3e --height 20 &"
+  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x383c4a --height 20 &"
   -- picom transparcy
   spawnOnce "picom &"
 

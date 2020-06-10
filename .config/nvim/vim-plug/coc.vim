@@ -5,7 +5,7 @@
 " TextEdit might fail if hidden is not set.
 set hidden
 
-set cmdheight=2
+set cmdheight=1
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -24,7 +24,7 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 hi CocErrorSign ctermfg=Red guifg=#e06c75
-hi CocErrorHighlight gui=underline guibg=Red guifg=#282c34 
+hi CocErrorHighlight gui=underline guifg=Red
 
 " " Add (Neo)Vim's native statusline support.
 " " NOTE: Please see `:h coc-status` for integrations with external plugins that

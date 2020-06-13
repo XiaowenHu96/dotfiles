@@ -186,6 +186,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
 
+    -- Lock screen
+    , ((modm .|. shiftMask .|. controlMask, xK_x     ), spawn "xscreensaver-command -lock")
+
     -- Restart xmonad
     , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
 
@@ -354,7 +357,7 @@ myLogHook xmproc = dynamicLogWithPP xmobarPP
 -- By default, do nothing.
 myStartupHook = do 
   -- nitrogen a wallpaper mananger.
-  spawnOnce "nitrogen --restore &" 
+  spawn "nitrogen --restore &" 
   -- network applet
   spawnOnce "nm-applet &"
   -- bluetooth applet
@@ -363,6 +366,8 @@ myStartupHook = do
   spawnOnce "fcitx &"
   -- notification daemon
   spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon &"
+  -- Xscreensaver
+  spawn "xscreensaver -no-splash"
   -- trayer, manage applet icons
   spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x383c4a --height 20 &"
   -- picom transparcy

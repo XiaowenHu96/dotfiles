@@ -356,6 +356,8 @@ myLogHook xmproc = dynamicLogWithPP xmobarPP
 --
 -- By default, do nothing.
 myStartupHook = do 
+  -- battery
+  spawnOnce "cbatticon &"
   -- nitrogen a wallpaper mananger.
   spawn "nitrogen --restore &" 
   -- network applet
@@ -381,6 +383,7 @@ myStartupHook = do
 main = do 
   -- Start xmobar
   xmproc <- spawnPipe "/usr/bin/xmobar /home/xiaowen/.config/xmobar/xmobarcc" 
+  -- xmproc <- spawnPipe "/usr/bin/xmobar"
   -- Run xmonad with setting
   xmonad $ ewmh $ docks def 
     {

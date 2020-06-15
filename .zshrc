@@ -1,6 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+/opt/shell-color-scripts/colorscript.sh random
+
 # Path to your oh-my-zsh installation.
 export ZSH=/home/xiaowen/.oh-my-zsh
 
@@ -66,9 +68,11 @@ plugins=(
   git
   vi-mode
   fzf
-  zsh-autosuggestions
 )
 source $ZSH/oh-my-zsh.sh
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Remove vi-end-of-line since I dont like A to cause an autosuggestions
 # was: ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(forward-char end-of-line vi-forward-char vi-end-of-line vi-add-eol)
@@ -80,13 +84,13 @@ bindkey '^ ' autosuggest-accept
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags
@@ -114,13 +118,11 @@ compinit
 
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export PATH="/home/xiaowen/.local/bin:$PATH"
 # Solve gettext warning
 export LC_ALL=en_US.UTF-8
 export TERM='xterm-256color'
-source /home/xiaowen/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export EDITOR="/usr/bin/nvim"
-# Start vim as server for vimtex backward search
-alias vim='vim --servername VIM'
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 # Arch linux, set Qt5 to use gtk2 theme. (GTK and QT apps use different theme)
 # Require qt5-styleplugins, see detail
@@ -130,11 +132,8 @@ export QT_QPA_PLATFORMTHEME=gtk2
 # Alias for lsd
 alias ls='lsd'
 alias l='lsd -l'
-colorscript random
 
 # Alias for vimrc
 alias vrc='nvim ~/.vimrc'
 
-source /home/xiaowen/.config/broot/launcher/bash/br
-# Set up nvr server name
-# export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
+PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"

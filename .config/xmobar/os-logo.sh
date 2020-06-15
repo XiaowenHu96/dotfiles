@@ -8,7 +8,7 @@
 manjaro_color=#34be5b
 manjaro="\uf312 "
 archlinux_color=#1793d0
-archlinux="\xf303 "
+archlinux="\uf303 "
 
 if [[ -f /etc/os-release || \
       -f /usr/lib/os-release || \

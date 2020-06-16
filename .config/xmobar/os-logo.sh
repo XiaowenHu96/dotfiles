@@ -5,9 +5,9 @@
 # Logo (most likely) needs nerd font support.
 
 # Necessary to put a space after logo if using mono space 
-manjaro_color=#34be5b
+manjaro_color="#34be5b"
 manjaro="\uf312 "
-archlinux_color=#1793d0
+archlinux_color="#1793d0"
 archlinux="\xf303 "
 
 if [[ -f /etc/os-release || \

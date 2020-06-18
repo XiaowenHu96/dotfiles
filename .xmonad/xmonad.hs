@@ -39,7 +39,7 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "st" -- set default terminal
+myTerminal      = "alacritty" -- set default terminal
 myDmenu         = "dmenu_run -fn 'Fira Code Medium:size=15' -c -l 20 -i" -- font, center, lines, case-insensitive
 
 -- Whether focus follows the mouse pointer.
@@ -70,7 +70,7 @@ myModMask       = mod4Mask  -- use the super key
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [3..9]
 -- Those with tags are awesomefont for xmobar, those without are nerdfont patched icon.
-myWorkspaces    = ["\xf120","\xe62b", "\xf7ae","\xf27b", "5", "6", "7", "8", "9"]
+myWorkspaces    = ["\xf120 ","\xe62b ", "\xf7ae ","\xf27b ", "5 ", "6 ", "7 ", "8 ", "9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -396,8 +396,8 @@ myStartupHook = do
   spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon &"
   -- Xscreensaver
   spawn "xscreensaver -no-splash"
-  -- trayer, manage applet icons
-  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x383c4a --height 20 &"
+  -- trayer
+  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x383c4a --height 20 --monitor primary &"
   -- picom transparcy
   spawnOnce "picom &"
 

@@ -27,8 +27,10 @@ import XMonad.Layout.Simplest
 import XMonad.Layout.WindowNavigation
 import XMonad.Layout.BoringWindows 
 import XMonad.Layout.Spacing
+import XMonad.Layout.IndependentScreens
 import XMonad.Prompt
 import XMonad.Prompt.XMonad
+import Control.Monad
 
 
 import qualified XMonad.StackSet as W
@@ -337,15 +339,39 @@ myEventHook = mempty
 
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
---
-myLogHook xmproc = dynamicLogWithPP xmobarPP
-                  { ppOutput          = hPutStrLn xmproc
-                  , ppTitle           = xmobarColor "#d0d0d0" "" . shorten 60
-                  , ppCurrent         = xmobarColor "#c3e88d" "" . wrap "[" "]" -- Current workspace in xmobar
-                  , ppVisible         = xmobarColor "#c3e88d" ""                -- Visible but not current workspace
-                  , ppHiddenNoWindows = id                                      -- Show all hidden windows
-                  , ppSep             = "<fc=#d0d0d0> : </fc>"                  -- Seperator and color
-                  }
+
+-- TODO: install and use std lib instead.
+indexed :: [a] -> [(Int, a)]
+indexed xs = go 0 xs
+    where
+        go i (a:as) = (i, a) : go (i + 1) as
+        go _ _      = []
+
+myLogHook xmprocs = do 
+        ws <- gets windowset
+        let focusedScreen = fromIntegral $ W.screen (W.current ws)
+        mapM_ (\(i, x) -> 
+            if i == focusedScreen 
+              then dynamicLogWithPP $ primaryXmobarPP x
+              else dynamicLogWithPP $ secondaryXmobarPP x
+              ) $ indexed xmprocs
+        (return ())
+    where primaryXmobarPP xm = (xmobarPP
+                                {   ppOutput          = hPutStrLn xm
+                                  , ppTitle           = xmobarColor "#f8f8f2" "" . shorten 60
+                                  , ppCurrent         = xmobarColor "#c3e88d" "" . wrap "[" "]"
+                                  , ppVisible         = xmobarColor "#c3e88d" "" 
+                                  , ppHiddenNoWindows = id                   
+                                  , ppSep             = "<fc=#f8f8f2> : </fc>"
+                                })
+          secondaryXmobarPP xm = (xmobarPP
+                                {   ppOutput          = hPutStrLn xm
+                                  , ppTitle           = \x -> ""
+                                  , ppCurrent         = xmobarColor "#d0d0d0" ""
+                                  , ppVisible         = xmobarColor "#d0d0d0" "" 
+                                  , ppHiddenNoWindows = id                   
+                                  , ppSep             = "<fc=#d0d0d0> : </fc>"
+                                })
 
 ------------------------------------------------------------------------
 -- Startup hook
@@ -379,16 +405,19 @@ myStartupHook = do
 -- Now run xmonad with all the defaults we set up.
 
 -- Run xmonad with the settings you specify. No need to modify this.
---
 main = do 
-  -- Start xmobar
-  xmproc <- spawnPipe "/usr/bin/xmobar /home/xiaowen/.config/xmobar/xmobarcc" 
+
+  -- Start xmobar on all screen
+  nScreens <- countScreens
+  xmprocs <- mapM (\i -> spawnPipe $ "/usr/bin/xmobar -x " ++ show i ++ " /home/xiaowen/.config/xmobar/xmobarcc" ++ 
+                   (if i == 0 then "" else "-secondary")) [0..nScreens-1]
+
   -- xmproc <- spawnPipe "/usr/bin/xmobar"
   -- Run xmonad with setting
   xmonad $ ewmh $ docks def 
     {
         -- simple stuff
-          terminal           = myTerminal,
+          terminal           = myTerminal ++ " -e tmux",
           focusFollowsMouse  = myFocusFollowsMouse,
           clickJustFocuses   = myClickJustFocuses,
           borderWidth        = myBorderWidth,
@@ -410,7 +439,8 @@ main = do
           handleEventHook    = myEventHook <+>
                                fullscreenEventHook, -- Solve chromium fullscreen
 
-          logHook            = myLogHook xmproc,
+          logHook            = myLogHook xmprocs,
+
           startupHook        = myStartupHook
       }
 

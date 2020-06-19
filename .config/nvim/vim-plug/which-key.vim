@@ -53,13 +53,14 @@ let g:which_key_map.l = {
       \ 'f' :  ["<Plug>(coc-format)"                           , "format code"],
       \ 'F' :  ["<Plug>(coc-format-selected)"                  , "format selected"],
       \ 'a' :  ["<Plug>(coc-codeaction-line)"                  , "code action"],
+      \ 'e' :  [":call CocAction('diagnosticPreview')"         , "error in preview"],
       \ }
 
 " S for Spell/Sessions
 let g:which_key_map.S = {
       \ 'name' : '+Sessions/Spell' ,
       \ 'o' :  [":set spell spelllang=en_us"                , "spell on"],
-      \ 'q' :  [":set spell spelllang="                     , "spell off"],
+      \ 'q' :  [":set nospell"                              , "spell off"],
       \ 's' :  ["z="                                        , "spell correction"],
       \ 'a' :  [":SSave!"                                   , "add/save session"],
       \ 'd' :  [":SDelete!"                                 , "delete session"],

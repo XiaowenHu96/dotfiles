@@ -53,6 +53,7 @@ let g:which_key_map.l = {
       \ 'f' :  ["<Plug>(coc-format)"                           , "format code"],
       \ 'F' :  ["<Plug>(coc-format-selected)"                  , "format selected"],
       \ 'a' :  ["<Plug>(coc-codeaction-line)"                  , "code action"],
+      \ 'e' :  [":call CocAction('diagnosticPreview')"         , "error in preview"],
       \ }
 
 " S for Spell/Sessions

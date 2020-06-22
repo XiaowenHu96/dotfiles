@@ -55,5 +55,5 @@ Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=13:bold:
                       \<fc=#8BE9FD>%date% </fc><fc=#666666>| </fc>\
                       \<action=`pavucontrol` button=1><fc=#FFB6B3>%default:Master%</fc> </action><fc=#666666>|</fc> \
                       \%battery%\
-                      \%trayerpad%\"
+                      \%trayerpad%"
         }

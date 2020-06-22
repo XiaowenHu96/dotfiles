@@ -29,7 +29,7 @@ hi CocErrorHighlight gui=underline guifg=Red
 " " Add (Neo)Vim's native statusline support.
 " " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " " provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " " Mappings using CoCList:
 " TODO: haven't map to which-key yet

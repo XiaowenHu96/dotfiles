@@ -39,10 +39,13 @@ Plug 'souffle-lang/souffle.vim'
 Plug 'neovimhaskell/haskell-vim'
 
 " Vim Markdown enhancement "
-Plug 'plasticboy/vim-markdown'
+" Plug 'plasticboy/vim-markdown'
 
 " Surround.vim: quoting/parenthesizing made simple 
 Plug 'tpope/vim-surround'
+
+" fugitive.vim: A Git wrapper so awesome, it should be illegal
+Plug 'tpope/vim-fugitive'
 
 " Commentary.vim: comment stuff out
 Plug 'tpope/vim-commentary'

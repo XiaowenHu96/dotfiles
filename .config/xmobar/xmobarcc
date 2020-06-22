@@ -7,7 +7,7 @@ Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=13:bold:
        -- by using fc-list | grep "Awesome" (arch)
        , additionalFonts = [ "xft:Font Awesome 5 Free Solid:style=Solid:pixelsize=13", "xft:Font Awesome 5 Free Regular:style=Regular:pixelsize=13"]
        , bgColor = "#383c4a"
-       , fgColor = "#B45BCF"
+       , fgColor = "#ff79c6"
        , position = Top
        , lowerOnStart = True
        , hideOnStart = False

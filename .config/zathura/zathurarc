@@ -8,3 +8,5 @@ set synctex true
 
 " Support for backward search with vimtex
 set synctex-editor-command "nvr --remote-slient +"%line" "%file" "
+
+set font "JetBrains Mono 13"

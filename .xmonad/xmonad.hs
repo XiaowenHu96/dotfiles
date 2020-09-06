@@ -70,7 +70,7 @@ myModMask       = mod4Mask  -- use the super key
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [3..9]
 -- Those with tags are awesomefont for xmobar, those without are nerdfont patched icon.
-myWorkspaces    = ["\xf120 ","\xe62b ", "\xf7ae ","\xf27b ", "5 ", "6 ", "7 ", "8 ", "9"]
+myWorkspaces    = ["\xf120 ","\xe62b ", "\xf7ae ","\xf27b ", "5 ", "6 ", "7 ", "8 ", "9 "]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -359,7 +359,7 @@ myLogHook xmprocs = do
     where primaryXmobarPP xm = (xmobarPP
                                 {   ppOutput          = hPutStrLn xm
                                   , ppTitle           = xmobarColor "#f8f8f2" "" . shorten 60
-                                  , ppCurrent         = xmobarColor "#c3e88d" "" . wrap "[" "]"
+                                  , ppCurrent         = xmobarColor "#c3e88d" "" . wrap "[ " "]"
                                   , ppVisible         = xmobarColor "#c3e88d" "" 
                                   , ppHiddenNoWindows = id                   
                                   , ppSep             = "<fc=#f8f8f2> : </fc>"
@@ -367,9 +367,10 @@ myLogHook xmprocs = do
           secondaryXmobarPP xm = (xmobarPP
                                 {   ppOutput          = hPutStrLn xm
                                   , ppTitle           = \x -> ""
-                                  , ppCurrent         = xmobarColor "#d0d0d0" ""
+                                  , ppCurrent         = xmobarColor "#d0d0d0" "" . wrap "[ " "]"
                                   , ppVisible         = xmobarColor "#d0d0d0" "" 
-                                  , ppHiddenNoWindows = id                   
+                                  , ppHidden          = xmobarColor "#d0d0d0" "" 
+                                  , ppHiddenNoWindows = xmobarColor "#d0d0d0" ""
                                   , ppSep             = "<fc=#d0d0d0> : </fc>"
                                 })
 

@@ -137,3 +137,7 @@ alias l='lsd -l'
 alias vrc='nvim ~/.vimrc'
 
 PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
+
+# export GTK_IM_MODULE=ibus
+# export XMODIFIERS=@im=ibus
+# export QT_IM_MODULE=ibus

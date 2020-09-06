@@ -54,6 +54,9 @@ let g:vimtex_quickfix_latexlog = {
       \ },
       \}
 
+" DO not open qucik fix if there is only warings
+let g:vimtex_quickfix_open_on_warning = 0
+
 " Tex file specific command
 augroup TexFileSetting
     autocmd!
@@ -70,6 +73,8 @@ augroup TexFileSetting
     " Add some customized autopairs
     " \( -> \(<cursor>\)
     autocmd FileType tex inoremap <buffer> \( \(\)<left><left>
+    " \[ -> \[<cursor>\]
+    autocmd FileType tex inoremap <buffer> \[ \[\]<left><left>
     " $ -> $cursor$
     autocmd FileType tex inoremap <buffer> $ $$<left>
     " $$ -> $$cursor$$

@@ -68,4 +68,5 @@ source $HOME/.config/nvim/vim-plug/coc.vim
 " Finally load which-key
 source $HOME/.config/nvim/vim-plug/which-key.vim
 
-
+" Coq
+source $HOME/.config/nvim/vim-plug/coqtail.vim

@@ -106,4 +106,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " vim plugin, insert or delete brackets, parens, quotes in pair 
 Plug 'jiangmiao/auto-pairs'
 
+" Coq
+Plug 'whonore/Coqtail' 
+
 call plug#end()

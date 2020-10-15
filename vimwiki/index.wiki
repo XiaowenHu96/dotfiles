@@ -1,0 +1,7 @@
+= Research =
+ * [[Souffle Interpreter]]
+
+
+== Quick Reference ==
+ * [[https://github.com/vimwiki/vimwiki.git|link to a web]]
+ * [[file:/home/somebody/a/b/c/music.mp3 |link to local file]]

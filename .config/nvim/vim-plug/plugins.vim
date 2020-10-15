@@ -109,4 +109,7 @@ Plug 'jiangmiao/auto-pairs'
 " Coq
 Plug 'whonore/Coqtail' 
 
+" Vimwiki
+Plug 'vimwiki/vimwiki'
+
 call plug#end()

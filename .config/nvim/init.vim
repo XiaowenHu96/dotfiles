@@ -70,3 +70,6 @@ source $HOME/.config/nvim/vim-plug/which-key.vim
 
 " Coq
 source $HOME/.config/nvim/vim-plug/coqtail.vim
+
+" Vimwiki
+source $HOME/.config/nvim/vim-plug/vimwiki.vim

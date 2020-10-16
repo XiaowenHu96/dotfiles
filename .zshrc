@@ -103,7 +103,10 @@ bindkey '^ ' autosuggest-accept
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH="/usr/local/bin:/usr/local/opt/bison/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/opt/bison/bin:/home/xiaowen/.gem/ruby/2.7.0/bin:$PATH"
+
+# Path to Go
+export PATH=$PATH:/usr/local/go/bin
 
 autoload -Uz compinit
 compinit

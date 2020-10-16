@@ -68,7 +68,7 @@ myModMask       = mod4Mask  -- use the super key
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [3..9]
 -- Those with tags are awesomefont for xmobar, those without are nerdfont patched icon.
-myWorkspaces    = ["\xf120 ","\xe62b ", "\xf7ae ","\xf27b ", "5 ", "6 ", "7 ", "8 ", "9"]
+myWorkspaces    = ["\xf120 ","\xe62b ", "\xf7ae ","\xf27b ", "5 ", "6 ", "7 ", "8 ", "9 "]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -341,7 +341,7 @@ myEventHook = mempty
 myLogHook xmproc = dynamicLogWithPP xmobarPP
                   { ppOutput          = hPutStrLn xmproc
                   , ppTitle           = xmobarColor "#f8f8f2" "" . shorten 60
-                  , ppCurrent         = xmobarColor "#c3e88d" "" . wrap "[" "]" -- Current workspace in xmobar
+                  , ppCurrent         = xmobarColor "#c3e88d" "" . wrap "[ " "]" -- Current workspace in xmobar
                   , ppVisible         = xmobarColor "#c3e88d" ""                -- Visible but not current workspace
                   , ppHiddenNoWindows = id                                      -- Show all hidden windows
                   , ppSep             = "<fc=#f8f8f2> : </fc>"                  -- Seperator and color

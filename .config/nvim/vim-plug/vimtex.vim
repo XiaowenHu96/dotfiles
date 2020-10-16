@@ -54,6 +54,9 @@ let g:vimtex_quickfix_latexlog = {
       \ },
       \}
 
+
+let g:vimtex_quickfix_open_on_warning = 0
+
 " Tex file specific command
 augroup TexFileSetting
     autocmd!

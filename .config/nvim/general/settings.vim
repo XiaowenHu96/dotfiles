@@ -59,3 +59,33 @@ augroup AutoSaveFolds
     autocmd BufWinLeave * silent! mkview
     autocmd BufWinEnter * silent! loadview
 augroup END
+
+
+" file specific Setting
+augroup FileSpecificSetting
+    autocmd!
+    " Set maximum line length when working in tex file
+    autocmd FileType tex,vimwiki setlocal textwidth=79 fo+=l
+
+    " Map shift-enter to formatting.
+    " Note: keep an eye on it, maybe buggy.
+    autocmd FileType tex,vimwiki inoremap <buffer> <expr><cr> __FormatIsEOL() ? "<esc>gqqA\<cr>" : "\<cr>"
+    
+    " Open spell checker when enter tex
+    autocmd FileType tex,vimwiki setlocal spell spelllang=en_us
+
+    " Add some customized autopairs
+    " \( -> \(<cursor>\)
+    autocmd FileType tex inoremap <buffer> \( \(\)<left><left>
+    " \[ -> \[<cursor>\]
+    autocmd FileType tex inoremap <buffer> \[ \[\]<left><left>
+    " $ -> $cursor$
+    autocmd FileType tex inoremap <buffer> $ $$<left>
+    " $$ -> $$cursor$$
+    autocmd FileType tex inoremap <buffer> $$ $$$$<left><left>
+
+augroup END
+
+function __FormatIsEOL()
+    return col(".") == col("$")
+endfunction

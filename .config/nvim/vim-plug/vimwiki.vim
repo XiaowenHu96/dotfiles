@@ -5,3 +5,4 @@
 :hi VimwikiHeader4 guifg=#FF00FF
 :hi VimwikiHeader5 guifg=#00FFFF
 :hi VimwikiHeader6 guifg=#FFFF00
+:hi VimwikiLink term=underline ctermfg=cyan guifg=cyan gui=underline

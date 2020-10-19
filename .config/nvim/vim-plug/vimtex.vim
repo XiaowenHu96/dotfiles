@@ -56,30 +56,3 @@ let g:vimtex_quickfix_latexlog = {
 
 
 let g:vimtex_quickfix_open_on_warning = 0
-
-" Tex file specific command
-augroup TexFileSetting
-    autocmd!
-    " Set maximum line length when working in tex file
-    autocmd FileType tex setlocal textwidth=79 fo+=l
-
-    " Map shift-enter to formatting.
-    " Note: keep an eye on it, maybe buggy.
-    autocmd FileType tex inoremap <buffer> <expr><cr> TexFormatIsEOL() ? "<esc>gqqA\<cr>" : "\<cr>"
-    
-    " Open spell checker when enter tex
-    autocmd FileType tex setlocal spell spelllang=en_us
-
-    " Add some customized autopairs
-    " \( -> \(<cursor>\)
-    autocmd FileType tex inoremap <buffer> \( \(\)<left><left>
-    " $ -> $cursor$
-    autocmd FileType tex inoremap <buffer> $ $$<left>
-    " $$ -> $$cursor$$
-    autocmd FileType tex inoremap <buffer> $$ $$$$<left><left>
-
-augroup END
-
-function TexFormatIsEOL()
-    return col(".") == col("$")
-endfunction

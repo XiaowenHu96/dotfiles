@@ -109,6 +109,9 @@ export LANG=en_US.UTF-8
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export PATH="/usr/local/bin:/usr/local/opt/bison/bin:$PATH"
 
+# add go/bin
+export PATH=$PATH:/usr/local/go/bin
+
 autoload -Uz compinit
 compinit
 # Completion for kitty

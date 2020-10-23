@@ -112,4 +112,11 @@ Plug 'whonore/Coqtail'
 " Vimwiki
 Plug 'vimwiki/vimwiki'
 
+" lisp
+Plug 'vlime/vlime', {'rtp': 'vim/'}
+
+" Rainbow Parentheses Improved
+Plug 'luochen1990/rainbow'
+
 call plug#end()
+

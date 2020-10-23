@@ -20,6 +20,7 @@ let g:cpp_no_function_highlight = 1     " disable function highlight
 " Vim-slime, send buffer to terminal
 let g:slime_target = "tmux"
 let g:slime_haskell_ghci_add_let = 0
+let g:slime_paste_file = "$HOME/.slime_paste"
 
 " haskell-vim
 let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
@@ -73,3 +74,6 @@ source $HOME/.config/nvim/vim-plug/coqtail.vim
 
 " Vimwiki
 source $HOME/.config/nvim/vim-plug/vimwiki.vim
+
+" Rainbow
+source $HOME/.config/nvim/vim-plug/rainbow.vim

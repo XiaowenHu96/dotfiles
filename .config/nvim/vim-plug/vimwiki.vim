@@ -6,3 +6,7 @@
 :hi VimwikiHeader5 guifg=#00FFFF
 :hi VimwikiHeader6 guifg=#FFFF00
 :hi VimwikiLink term=underline ctermfg=cyan guifg=cyan gui=underline
+
+
+" disable tab mappings in insert mode
+let g:vimwiki_table_mappings = 0

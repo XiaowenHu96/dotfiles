@@ -66,9 +66,6 @@ source $HOME/.config/nvim/vim-plug/vim-startify.vim
 " Coc.nvim
 source $HOME/.config/nvim/vim-plug/coc.vim
 
-" Finally load which-key
-source $HOME/.config/nvim/vim-plug/which-key.vim
-
 " Coq
 source $HOME/.config/nvim/vim-plug/coqtail.vim
 
@@ -77,3 +74,6 @@ source $HOME/.config/nvim/vim-plug/vimwiki.vim
 
 " Rainbow
 source $HOME/.config/nvim/vim-plug/rainbow.vim
+
+" Finally load which-key
+source $HOME/.config/nvim/vim-plug/which-key.vim

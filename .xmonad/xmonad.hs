@@ -73,9 +73,27 @@ myModMask       = mod4Mask  -- use the super key
 myWorkspaces    = ["\xf120 ","\xe62b ", "\xf7ae ","\xf27b ", "5 ", "6 ", "7 ", "8 ", "9 "]
 
 -- Border colors for unfocused and focused windows, respectively.
---
-myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#5294e2"
+
+-- arc version
+-- myNormalBorderColor  = "#dddddd"
+-- myFocusedBorderColor = "#5294e2"
+-- myTabTheme = defaultTheme { 
+                  -- activeColor = "#404552", inactiveColor = "#383c4a", 
+                  -- activeBorderColor = myFocusedBorderColor, inactiveBorderColor = "#383c4a",
+                  -- activeTextColor = "#dddddd", inactiveTextColor = "#7f7f7f",
+                  -- fontName = "xft:JetBrainsMono Nerd Font:size=12",
+                  -- decoHeight = 25
+                  -- }
+                  --
+-- gruvbox version
+myNormalBorderColor  = "#282828"
+myFocusedBorderColor = "#bdae93"
+myTabTheme = defaultTheme { 
+                activeColor = "#504945", inactiveColor = "#3c3836", 
+                activeBorderColor = myFocusedBorderColor, inactiveBorderColor = "#3c3836",
+                activeTextColor = "#bdae93", inactiveTextColor = "#a89984", 
+                fontName = "xft:JetBrainsMono Nerd Font:size=12", 
+                decoHeight = 25}
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -278,13 +296,7 @@ myLayout = boringWindows (tiled ||| grid ||| tabbed ||| Mirror tiled ||| Full)
 
      -- Xmonad need to be restart to see effect.
      -- Mostly arc theme
-     tab_config = defaultTheme { 
-                  activeColor = "#404552", inactiveColor = "#383c4a", 
-                  activeBorderColor = myFocusedBorderColor, inactiveBorderColor = "#383c4a",
-                  activeTextColor = "#dddddd", inactiveTextColor = "#7f7f7f",
-                  fontName = "xft:JetBrainsMono Nerd Font:size=12",
-                  decoHeight = 25
-                  }
+     tab_config = myTabTheme
 
 
 ------------------------------------------------------------------------

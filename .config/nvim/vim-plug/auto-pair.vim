@@ -11,5 +11,5 @@ let g:AutoPairsMapCR = 0    " Stupid functionality
 let g:AutoPairMapBS = 0     " Stupid functionality
 let g:AutoPairsMapCh = 0    " Stupid functionality
 let g:AutoPairsMultilineClose = 0
-let g:AutoPairsShortcutJump = ""
+let g:AutoPairsShortcutJump = ''
 let g:AutoPairsMapSpace = 0

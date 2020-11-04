@@ -5,7 +5,8 @@ source $HOME/.config/nvim/keys/keys.vim
 " Load general settings
 source $HOME/.config/nvim/general/settings.vim
 " Theme: Onedark
-source $HOME/.config/nvim/vim-plug/onedark.vim
+"source $HOME/.config/nvim/vim-plug/onedark.vim
+source $HOME/.config/nvim/vim-plug/gruvbox.vim
 
 "
 " Settings for plugins.

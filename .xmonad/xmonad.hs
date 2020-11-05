@@ -63,12 +63,11 @@ myModMask       = mod4Mask  -- use the super key
 -- By default we use numeric strings, but any string may be used as a
 -- workspace name. The number of workspaces is determined by the length
 -- of this list.
---
--- A tagging example:
---
--- > workspaces = ["web", "irc", "code" ] ++ map show [3..9]
--- Those with tags are awesomefont for xmobar, those without are nerdfont patched icon.
+
+-- For xmobar
 myWorkspaces    = ["\xf120 ","\xe62b ", "\xf7ae ","\xf27b ", "5 ", "6 ", "7 ", "8 ", "9 "]
+-- For polybar only defined an id, symbol can be defined in polybar config
+-- myWorkspaces    = map show  [1..9]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -356,6 +355,8 @@ myLogHook xmproc = dynamicLogWithPP xmobarPP
 --
 -- By default, do nothing.
 myStartupHook = do 
+  -- polybar
+  -- spawn "bash ~/.config/polybar/launch.sh"
   -- nitrogen a wallpaper mananger.
   spawn "nitrogen --restore &" 
   -- network applet

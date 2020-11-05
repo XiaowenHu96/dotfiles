@@ -87,11 +87,11 @@ myWorkspaces    = ["\xf120 ","\xe62b ", "\xf7ae ","\xf27b ", "5 ", "6 ", "7 ", "
                   --
 -- gruvbox version
 myNormalBorderColor  = "#282828"
-myFocusedBorderColor = "#bdae93"
+myFocusedBorderColor = "#d5c4a1"
 myTabTheme = defaultTheme { 
                 activeColor = "#504945", inactiveColor = "#3c3836", 
                 activeBorderColor = myFocusedBorderColor, inactiveBorderColor = "#3c3836",
-                activeTextColor = "#bdae93", inactiveTextColor = "#a89984", 
+                activeTextColor = "#d5c4a1", inactiveTextColor = "#a89984", 
                 fontName = "xft:JetBrainsMono Nerd Font:size=12", 
                 decoHeight = 25}
 

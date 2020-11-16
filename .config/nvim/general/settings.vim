@@ -53,6 +53,8 @@ set laststatus=2
 " Filetype
 filetype on
 
+" Disable dir save in makeview
+set viewoptions-=curdir
 " Auto save view when exit file and auto load view when open
 augroup AutoSaveFolds
     autocmd!

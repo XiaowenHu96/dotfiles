@@ -119,9 +119,11 @@ compinit
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export GOPATH=$HOME/go
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export PATH="/home/xiaowen/.local/bin:$PATH"
+export PATH=$PATH:$GOPATH/bin
 # Solve gettext warning
 export LC_ALL=en_US.UTF-8
 export TERM='xterm-256color'

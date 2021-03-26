@@ -86,8 +86,8 @@ myWorkspaces    = ["\xf120 ","\xe62b ", "\xf7ae ","\xf27b ", "5 ", "6 ", "7 ", "
                   -- }
                   --
 -- gruvbox version
-myNormalBorderColor  = "#282828"
-myFocusedBorderColor = "#d5c4a1"
+myNormalBorderColor = "#d5c4a1"
+myFocusedBorderColor  = "#3c3836"
 myTabTheme = defaultTheme { 
                 activeColor = "#504945", inactiveColor = "#3c3836", 
                 activeBorderColor = myFocusedBorderColor, inactiveBorderColor = "#3c3836",
@@ -370,9 +370,9 @@ myLogHook xmprocs = do
         (return ())
     where primaryXmobarPP xm = (xmobarPP
                                 {   ppOutput          = hPutStrLn xm
-                                  , ppTitle           = xmobarColor "#f8f8f2" "" . shorten 60
-                                  , ppCurrent         = xmobarColor "#c3e88d" "" . wrap "[ " "]"
-                                  , ppVisible         = xmobarColor "#c3e88d" "" 
+                                  , ppTitle           = xmobarColor "#ebdbb2" "" . shorten 60
+                                  , ppCurrent         = xmobarColor "#fabf2f" "" . wrap "[ " "]"
+                                  , ppVisible         = xmobarColor "#fabf2f" "" 
                                   , ppHiddenNoWindows = id                   
                                   , ppSep             = "<fc=#f8f8f2> : </fc>"
                                 })
@@ -410,9 +410,9 @@ myStartupHook = do
   -- Xscreensaver
   spawn "xscreensaver -no-splash"
   -- trayer
-  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x383c4a --height 20 --monitor primary &"
+  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x282828 --height 20 --monitor primary &"
   -- picom transparcy
-  spawnOnce "picom &"
+  -- spawnOnce "picom &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.

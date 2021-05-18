@@ -27,7 +27,9 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 
 " Rainbow Parentheses
-Plug 'junegunn/rainbow_parentheses.vim' , {'for' : ['lisp', 'scheme'] }
+" Plug 'junegunn/rainbow_parentheses.vim' , {'for' : ['lisp', 'scheme'] }
+" Use a new and better? version
+Plug 'luochen1990/rainbow'
 
 " C++ highlight extentsion
 Plug 'octol/vim-cpp-enhanced-highlight'

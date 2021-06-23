@@ -1,0 +1,50 @@
+-- Config file based on DT's (Derek Taylor's Gitlab) config
+-- Use flaticon to find nice icon :)
+-- Or use AwesomeFont to find icon, it much nicer and easy to intergate with any theme.
+
+Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=12:bold:antialias=true"
+       -- After install fontAwesome, make sure the font name is correct 
+       -- by using fc-list | grep "Awesome" (arch)
+       , additionalFonts = [ "xft:Font Awesome 5 Free Solid:style=Solid:pixelsize=12", "xft:Font Awesome 5 Free Regular:style=Regular:pixelsize=12"]
+       , bgColor = "#282828"
+       , fgColor = "#b57014"
+       , position = Top
+       , lowerOnStart = True
+       , hideOnStart = False
+       , allDesktops = True
+       , persistent = True
+       , iconRoot = "/home/xiaowen/.config/xmobar/xpm"
+       , commands = [ 
+                      -- OS logo and color
+                      Run Com "/home/xiaowen/.config/xmobar/os-logo.sh" [] "os_logo" 0
+                      -- Battery state
+                    --, Run Com "/home/xiaowen/.config/xmobar/battery-state.py" [] "battery" 30
+                      -- Time and date
+                    , Run Date "<fn=2> </fn>%d %b %Y (%H:%M)" "date" 50
+                      -- Network up and down
+                    , Run DynNetwork [ "-t" , "<fn=1></fn> <tx>kB/s, <rx>kB/s"] 10
+                      -- Cpu usage in percent
+                    , Run Cpu ["-t", "<fn=1></fn> cpu: (<total>%)","-H","50","--high","red"] 20
+                      -- Ram used number and percent
+                    , Run Memory ["-t", "<fn=2></fn> mem: <used>M (<usedratio>%)"] 20
+                      -- Disk space free
+                    , Run Com "uname" ["-r"] "" 36000
+                      -- Prints out the left side items such as workspaces, layout, etc.
+                      -- The workspaces are 'clickable' in my configs.
+                    , Run StdinReader
+                      -- Auto detect padding for trayer, see the script for detail.
+                    , Run Com "/home/xiaowen/.config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 10
+                    , Run Volume "default" "Master" [ "-t", "<status> <volume>%"
+                                                     ,"--"                      -- Start extra argument
+                                                     ,"--off", "<fn=1></fn>"
+                                                     ,"--offc", "#FFB6B3"
+                                                     ,"--on",  "<fn=1></fn>"
+                                                     ,"--onc", "#FFB6B3"
+                                                     ] 10
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{" 
+
+       -- \ start multi-line, put each line between '\'
+       , template = " %os_logo% \
+                      \%StdinReader% }{"

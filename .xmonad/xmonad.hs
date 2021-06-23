@@ -30,6 +30,7 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.IndependentScreens
 import XMonad.Prompt
 import XMonad.Prompt.XMonad
+import XMonad.Actions.CycleWS
 import Control.Monad
 
 
@@ -233,6 +234,14 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+    ++
+
+    -- cycle between monitors
+    [ 
+      ((modm,               xK_o), nextScreen)
+    , ((modm,               xK_i), prevScreen)
+    , ((modm .|. shiftMask, xK_o), shiftNextScreen)
+    , ((modm .|. shiftMask, xK_i), shiftPrevScreen)]
 
 
 ------------------------------------------------------------------------
@@ -396,7 +405,7 @@ myLogHook xmprocs = do
 -- By default, do nothing.
 myStartupHook = do 
   -- battery
-  spawnOnce "cbatticon &"
+  -- spawnOnce "cbatticon &"
   -- nitrogen a wallpaper mananger.
   spawn "nitrogen --restore &" 
   -- network applet

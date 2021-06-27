@@ -123,7 +123,6 @@ export TERM='xterm-256color'
 source /home/xiaowen/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export EDITOR="/usr/bin/nvim"
 # Start vim as server for vimtex backward search
-alias vim='vim --servername VIM'
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 # Arch linux, set Qt5 to use gtk2 theme. (GTK and QT apps use different theme)
 # Require qt5-styleplugins, see detail
@@ -137,6 +136,7 @@ colorscript random
 
 # Alias for vimrc
 alias vrc='nvim ~/.vimrc'
+alias vimlsp='vim -u ~/souffle-lsp/vim-client/vimrc'
 
 source /home/xiaowen/.config/broot/launcher/bash/br
 # Set up nvr server name

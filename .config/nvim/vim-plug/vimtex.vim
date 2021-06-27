@@ -7,7 +7,7 @@
 "
 "
 
-let g:tex_flavor = "latex"
+let g:tex_flavor = "pdflatex"
 let g:vimtex_view_method = 'zathura'
 let g:vimtext_compiler_progname="nvr"
 

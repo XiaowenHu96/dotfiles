@@ -80,7 +80,7 @@ bindkey '^ ' autosuggest-accept
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -120,7 +120,6 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH"
 # Solve gettext warning
 export LC_ALL=en_US.UTF-8
 export TERM='xterm-256color'
-source /home/xiaowen/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export EDITOR="/usr/bin/nvim"
 # Start vim as server for vimtex backward search
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
@@ -130,14 +129,15 @@ export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 export QT_QPA_PLATFORMTHEME=gtk2
 
 # Alias for lsd
+# unalias lsd # something is aliasing lsd to ls -d
 alias ls='lsd'
 alias l='lsd -l'
-colorscript random
 
 # Alias for vimrc
 alias vrc='nvim ~/.vimrc'
 alias vimlsp='vim -u ~/souffle-lsp/vim-client/vimrc'
 
-source /home/xiaowen/.config/broot/launcher/bash/br
 # Set up nvr server name
 # export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
+
+source /home/xiaowen/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

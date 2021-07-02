@@ -367,8 +367,6 @@ myStartupHook = do
   spawnOnce "fcitx &"
   -- notification daemon
   spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon &"
-  -- Xscreensaver
-  spawn "xscreensaver -no-splash"
   -- trayer, manage applet icons
   spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x383c4a --height 20 &"
   -- picom transparcy

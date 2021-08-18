@@ -72,7 +72,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'XiaowenHu96/gruvbox'
 
 " Vim-dark colorscheme
-Plug 'XiaowenHu96/onedark.vim', { 'branch': 'ALESupport' }
+" Plug 'XiaowenHu96/onedark.vim', { 'branch': 'ALESupport' }
+
+" Treesitter colorscheme, too cool! :-)
+Plug 'XiaowenHu96/onedark.nvim'
 
 " Vim latex editor
 Plug 'https://github.com/lervag/vimtex'
@@ -117,6 +120,9 @@ Plug 'vlime/vlime', {'rtp': 'vim/'}
 
 " Rainbow Parentheses Improved
 Plug 'luochen1990/rainbow'
+
+" Nerdtree
+Plug 'preservim/nerdtree'
 
 call plug#end()
 

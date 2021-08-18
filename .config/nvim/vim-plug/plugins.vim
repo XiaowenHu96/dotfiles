@@ -77,6 +77,9 @@ Plug 'XiaowenHu96/gruvbox'
 " Treesitter colorscheme, too cool! :-)
 Plug 'XiaowenHu96/onedark.nvim'
 
+" An ASCII math generator from LaTeX equations.
+Plug 'jbyuki/nabla.nvim'
+
 " Vim latex editor
 Plug 'https://github.com/lervag/vimtex'
 

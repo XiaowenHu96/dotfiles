@@ -93,6 +93,11 @@ let g:which_key_map.f = {
       \ 'au' : [":UltiSnipsEdit"                    , "add ultisnips"],
       \ }
 
+" Wrapper for nabla to insert latex math
+function Nabla_call()
+    exec ":lua require(\"nabla\").action()"
+endfunction
+
 " L for Latex
 let g:which_key_map.L = {
       \ 'name' : '+LaTeX' ,
@@ -103,6 +108,7 @@ let g:which_key_map.L = {
       \ 'e' :  [":VimtexError"                       , "check error"],
       \ 'l' :  [":VimtexCompile"                     , "toggle compile"],
       \ 'L' :  [":VimtexCompile"                     , "toggle compile"],
+      \ 'm' :  [':call Nabla_call()>'  , "insert latex action with nabla"],
       \ }
 
 " U for UltiSnips

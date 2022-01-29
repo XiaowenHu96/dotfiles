@@ -103,10 +103,12 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH="/usr/local/bin:/usr/local/opt/bison/bin:/home/xiaowen/.gem/ruby/2.7.0/bin:$PATH"
-
+export PATH="/usr/local/bin:/usr/local/opt/bison/bin:/home/xiaowen/.gem/ruby/2.7.0/bin:/home/xiaowen/.local/bin:$PATH"
 # Path to Go
 export PATH=$PATH:/usr/local/go/bin
+# Ghcup path
+export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
+export PATH="/home/xiaowen/.ghcup/ghc/9.0.1/bin:$PATH"
 
 autoload -Uz compinit
 compinit
@@ -127,9 +129,11 @@ export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 # Require qt5-styleplugins, see detail
 # https://wiki.archlinux.org/index.php/Uniform_look_for_Qt_and_GTK_applications#Theme_engines
 export QT_QPA_PLATFORMTHEME=gtk2
+# Spark
+export SPARK_HOME=/opt/apache-spark/
 
 # Alias for lsd
-# unalias lsd # something is aliasing lsd to ls -d
+# Note loading /etc/zsh/zshrc breaks theme and add unwatned alias
 alias ls='lsd'
 alias l='lsd -l'
 

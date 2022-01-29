@@ -275,7 +275,7 @@ myLayout = boringWindows (tiled ||| grid ||| tabbed ||| Mirror tiled ||| Full)
 
      -- Xmonad need to be restart to see effect.
      -- Mostly arc theme
-     tab_config = defaultTheme { 
+     tab_config = def { 
                   activeColor = "#404552", inactiveColor = "#383c4a", 
                   activeBorderColor = myFocusedBorderColor, inactiveBorderColor = "#383c4a",
                   activeTextColor = "#dddddd", inactiveTextColor = "#7f7f7f",
@@ -379,7 +379,7 @@ myStartupHook = do
 --
 main = do 
   -- Start xmobar
-  xmproc <- spawnPipe "/usr/bin/xmobar /home/xiaowen/.config/xmobar/xmobarcc" 
+  xmproc <- spawnPipe "xmobar /home/xiaowen/.config/xmobar/xmobarcc" 
   -- Run xmonad with setting
   xmonad $ ewmh $ docks def 
     {

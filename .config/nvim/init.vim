@@ -4,8 +4,6 @@ source $HOME/.config/nvim/vim-plug/plugins.vim
 source $HOME/.config/nvim/keys/keys.vim
 " Load general settings
 source $HOME/.config/nvim/general/settings.vim
-" Theme: Onedark
-source $HOME/.config/nvim/vim-plug/onedark.vim
 
 "
 " Settings for plugins.
@@ -22,16 +20,16 @@ let g:slime_target = "tmux"
 let g:slime_haskell_ghci_add_let = 0
 let g:slime_paste_file = "$HOME/.slime_paste"
 
-" haskell-vim
-let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-let g:haskell_backpack = 1                " to enable highlighting of backpack keywords<Paste>
-let g:haskell_indent_if = 2
-let g:haskell_indent_do = 2
+" " haskell-vim
+" let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+" let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+" let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+" let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+" let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+" let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+" let g:haskell_backpack = 1                " to enable highlighting of backpack keywords<Paste>
+" let g:haskell_indent_if = 2
+" let g:haskell_indent_do = 2
 
 " rnvimr -- ranger exploer in vim
 let g:rnvimr_ex_enable = 1         " Set Ranger as default file exploer
@@ -74,6 +72,9 @@ source $HOME/.config/nvim/vim-plug/vimwiki.vim
 
 " Rainbow
 source $HOME/.config/nvim/vim-plug/rainbow.vim
+
+" treesitter setup
+source $HOME/.config/nvim/vim-plug/treesitter.vim
 
 " Finally load which-key
 source $HOME/.config/nvim/vim-plug/which-key.vim

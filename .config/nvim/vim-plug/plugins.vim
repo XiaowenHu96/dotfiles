@@ -36,7 +36,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'souffle-lang/souffle.vim'
 
 " Haskell highlight
-Plug 'neovimhaskell/haskell-vim'
+" Plug 'neovimhaskell/haskell-vim'
 
 " Vim Markdown enhancement "
 " Plug 'plasticboy/vim-markdown'
@@ -71,11 +71,17 @@ Plug 'vim-airline/vim-airline-themes'
 " Note: Use my own gurvbox which fix the haskell-vim theme overriden by the
 Plug 'XiaowenHu96/gruvbox'
 
-" Vim-dark colorscheme
-" Plug 'XiaowenHu96/onedark.vim', { 'branch': 'ALESupport' }
-
-" Treesitter colorscheme, too cool! :-)
+" Onedark with treesitter
 Plug 'XiaowenHu96/onedark.nvim'
+
+" Sonokai with treesitter
+Plug 'sainnhe/sonokai'
+
+" Gruvbox with treesitter
+Plug 'sainnhe/gruvbox-material'
+
+" Onedark like theme with treesitter
+Plug 'sainnhe/edge'
 
 " An ASCII math generator from LaTeX equations.
 Plug 'jbyuki/nabla.nvim'
@@ -126,6 +132,9 @@ Plug 'luochen1990/rainbow'
 
 " Nerdtree
 Plug 'preservim/nerdtree'
+
+" Treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
 call plug#end()
 

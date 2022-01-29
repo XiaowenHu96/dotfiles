@@ -18,6 +18,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicProperty
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Grid
 import XMonad.Layout.Renamed
@@ -108,7 +109,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch ranger at home dir.
     -- Most of terminal should use -e flag to execute given command.
-    , ((modm .|. shiftMask, xK_f ),     spawn $ myTerminal ++ " -e ranger ~")
+    -- class name used for hooker to identify it and float it rightaway
+    , ((modm .|. shiftMask, xK_f ),     spawn $ myTerminal ++ " --class AlacrittyRanger -e ranger ~")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -312,6 +314,8 @@ myManageHook = composeAll
     , resource =? "org.gnome.Nautilus"  --> doFloat
     -- Skype
     , className =? "Skype"          --> doShift (myWorkspaces !! 3)
+    -- Ranger
+    , resource =? "AlacrittyRanger"   --> doRectFloat (W.RationalRect 0.15 0.15 0.7 0.7)
     -- Zoom
     -- , className =? "zoom"          --> doShift (myWorkspaces !! 3)
     -- Spotify not done. Xiaowen: Stupid spotify ignore ICCCM, don't know how to fix

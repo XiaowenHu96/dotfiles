@@ -125,10 +125,7 @@ export TERM='xterm-256color'
 export EDITOR="/usr/bin/nvim"
 # Start vim as server for vimtex backward search
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
-# Arch linux, set Qt5 to use gtk2 theme. (GTK and QT apps use different theme)
-# Require qt5-styleplugins, see detail
-# https://wiki.archlinux.org/index.php/Uniform_look_for_Qt_and_GTK_applications#Theme_engines
-export QT_QPA_PLATFORMTHEME=gtk2
+
 # Spark
 export SPARK_HOME=/opt/apache-spark/
 

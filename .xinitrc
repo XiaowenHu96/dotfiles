@@ -48,9 +48,18 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-exec xmonad
-
 # screen lock
 xset s on
-xset s 300
-xss-lock -- i3lock -n &
+xset s 1200
+xss-lock -- i3lock -i /home/xiaowen/wallpapers/space.png -L &
+
+picom &
+
+# Important! must source in this file and before starting wm
+# https://wiki.archlinux.org/title/fcitx
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+ibus-daemon -drxR
+# to use ibus-rime in wine, ibus-daemon -drxR --xim
+exec xmonad

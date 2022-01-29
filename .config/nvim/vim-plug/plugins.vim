@@ -74,6 +74,9 @@ Plug 'XiaowenHu96/gruvbox'
 " Onedark with treesitter
 Plug 'XiaowenHu96/onedark.nvim'
 
+" Nordic
+Plug 'arcticicestudio/nord-vim'
+
 " Sonokai with treesitter
 Plug 'sainnhe/sonokai'
 

@@ -71,8 +71,8 @@ myWorkspaces    = ["\xf120 ","\xe62b ", "\xf7ae ","\xf27b ", "5 ", "6 ", "7 ", "
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#5294e2"
+myNormalBorderColor  = "#3B4252"
+myFocusedBorderColor = "#5E81AC"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -340,8 +340,8 @@ myEventHook = mempty
 myLogHook xmproc = dynamicLogWithPP xmobarPP
                   { ppOutput          = hPutStrLn xmproc
                   , ppTitle           = xmobarColor "#f8f8f2" "" . shorten 60
-                  , ppCurrent         = xmobarColor "#c3e88d" "" . wrap "[ " "]" -- Current workspace in xmobar
-                  , ppVisible         = xmobarColor "#c3e88d" ""                -- Visible but not current workspace
+                  , ppCurrent         = xmobarColor "#5E81AC" "" . wrap "[ " "]" -- Current workspace in xmobar
+                  , ppVisible         = xmobarColor "#5E81AC" ""                -- Visible but not current workspace
                   , ppHiddenNoWindows = id                                      -- Show all hidden windows
                   , ppSep             = "<fc=#f8f8f2> : </fc>"                  -- Seperator and color
                   }
@@ -364,13 +364,11 @@ myStartupHook = do
   -- bluetooth applet
   spawnOnce "blueman-applet &"
   -- fcitx applet
-  spawnOnce "fcitx &"
+  -- spawnOnce "fcitx &"
   -- notification daemon
   spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon &"
   -- trayer, manage applet icons
   spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x383c4a --height 20 &"
-  -- picom transparcy
-  spawnOnce "picom &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.

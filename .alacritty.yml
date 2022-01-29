@@ -120,62 +120,176 @@ draw_bold_text_with_bright_colors: true
 # and cursor.background colors, otherwise invert the colors of the cursor.
 # custom_cursor_colors: false
 
-# Colors
-colors:
-  # Default colours
-  primary:
-    background: '#282C34'
-    foreground: '#f8f8f2'
+schemes:
+# Colors (Gruvbox light)
+  gruvbox_light: &gruvbox_light
+      # Default colors
+      primary:
+        # hard contrast: background = '#f9f5d7'
+        background: '#fbf1c7'
+        # soft contrast: background = '#f2e5bc'
+        foreground: '#3c3836'
 
-  # Colors that should be used to draw the terminal cursor. If these are unset,
-  # the cursor colour will be the inverse of the cell colour.
-  # cursor:
-  #   text: '0x2e2e2d'
-  #   # text: '0x000000'
-  #   cursor: '0xffffff'
+      # Normal colors
+      normal:
+        black:   '#fbf1c7'
+        red:     '#cc241d'
+        green:   '#98971a'
+        yellow:  '#d79921'
+        blue:    '#458588'
+        magenta: '#b16286'
+        cyan:    '#689d6a'
+        white:   '#7c6f64'
 
-  # Normal colors
-  normal:
-    black:   '#7f7f8f'
-    red:     '#ff5555'
-    green:   '#50fa7b'
-    yellow:  '#f1fa8c'
-    blue:    '#3daee9'
-    magenta: '#ff79c6'
-    cyan:    '#8be9fd'
-    white:   '#ffffff'
+      # Bright colors
+      bright:
+        black:   '#928374'
+        red:     '#9d0006'
+        green:   '#79740e'
+        yellow:  '#b57614'
+        blue:    '#076678'
+        magenta: '#8f3f71'
+        cyan:    '#427b58'
+        white:   '#3c3836'
 
-  # Bright colors
-  bright:
-    black:   '#7f7f8f'
-    red:     '#ff5555'
-    green:   '#50fa7b'
-    yellow:  '#f1fa8c'
-    blue:    '#3daee9'
-    magenta: '#ff79c6'
-    cyan:    '#8be9fd'
-    white:   '#ffffff'
+# My-arc-like
+  my-arc-like: &my-arc-like
+      # Default colours
+      primary:
+        background: '#282C34'
+        foreground: '#f8f8f2'
 
-  # Dim colors (Optional)
-  dim:
-    black:   '0x333333'
-    red:     '0xf2777a'
-    green:   '0x99cc99'
-    yellow:  '0xffcc66'
-    blue:    '0x6699cc'
-    magenta: '0xcc99cc'
-    cyan:    '0x66cccc'
-    white:   '0xdddddd'
+      # Colors that should be used to draw the terminal cursor. If these are unset,
+      # the cursor colour will be the inverse of the cell colour.
+      # cursor:
+      #   text: '0x2e2e2d'
+      #   # text: '0x000000'
+      #   cursor: '0xffffff'
 
-  # Indexed Colors
-  #
-  # The indexed colors include all colors from 16 to 256.
-  # When these are not set, they're filled with sensible defaults.
-  #
-  # Example:
-  #   `- { index: 16, color: '0xff00ff' }`
-  #
-  indexed_colors: []
+      # Normal colors
+      normal:
+        black:   '#7f7f8f'
+        red:     '#ff5555'
+        green:   '#50fa7b'
+        yellow:  '#f1fa8c'
+        blue:    '#3daee9'
+        magenta: '#ff79c6'
+        cyan:    '#8be9fd'
+        white:   '#ffffff'
+
+      # Bright colors
+      bright:
+        black:   '#7f7f8f'
+        red:     '#ff5555'
+        green:   '#50fa7b'
+        yellow:  '#f1fa8c'
+        blue:    '#3daee9'
+        magenta: '#ff79c6'
+        cyan:    '#8be9fd'
+        white:   '#ffffff'
+
+      # Dim colors (Optional)
+      dim:
+        black:   '0x333333'
+        red:     '0xf2777a'
+        green:   '0x99cc99'
+        yellow:  '0xffcc66'
+        blue:    '0x6699cc'
+        magenta: '0xcc99cc'
+        cyan:    '0x66cccc'
+        white:   '0xdddddd'
+
+
+# gruvbox-dark
+  gruvbox_dark: &gruvbox_dark
+      # Default colors
+      primary:
+        # hard contrast: background = '#1d2021'
+        background: '#282828'
+        # soft contrast: background = '#32302f'
+        foreground: '#ebdbb2'
+
+      # Normal colors
+      normal:
+        black:   '#928374'
+        red:     '#fb4934'
+        green:   '#b8bb26'
+        yellow:  '#fabd2f'
+        blue:    '#83a598'
+        magenta: '#d3869b'
+        cyan:    '#8ec07c'
+        white:   '#ebdbb2'
+        # black:   '#282828'
+        # red:     '#cc241d'
+        # green:   '#98971a'
+        # yellow:  '#d79921'
+        # blue:    '#458588'
+        # magenta: '#b16286'
+        # cyan:    '#689d6a'
+        # white:   '#a89984'
+
+      # Bright colors
+      bright:
+        black:   '#928374'
+        red:     '#fb4934'
+        green:   '#b8bb26'
+        yellow:  '#fabd2f'
+        blue:    '#83a598'
+        magenta: '#d3869b'
+        cyan:    '#8ec07c'
+        white:   '#ebdbb2'
+
+# nord-alacritty.git
+  nord: &nord
+    primary:
+      background: '#2e3440'
+      foreground: '#d8dee9'
+      dim_foreground: '#a5abb6'
+    cursor:
+      text: '#2e3440'
+      cursor: '#d8dee9'
+    vi_mode_cursor:
+      text: '#2e3440'
+      cursor: '#d8dee9'
+    selection:
+      text: CellForeground
+      background: '#4c566a'
+    search:
+      matches:
+        foreground: CellBackground
+        background: '#88c0d0'
+      bar:
+        background: '#434c5e'
+        foreground: '#d8dee9'
+    normal:
+      black: '#2E3440'
+      red: '#bf616a'
+      green: '#a3be8c'
+      yellow: '#ebcb8b'
+      blue: '#81a1c1'
+      magenta: '#b48ead'
+      cyan: '#88c0d0'
+      white: '#e5e9f0'
+    bright:
+      black: '#616E88'
+      red: '#bf616a'
+      green: '#a3be8c'
+      yellow: '#ebcb8b'
+      blue: '#81a1c1'
+      magenta: '#b48ead'
+      cyan: '#8fbcbb'
+      white: '#eceff4'
+    dim:
+      black: '#373e4d'
+      red: '#94545d'
+      green: '#809575'
+      yellow: '#b29e75'
+      blue: '#68809a'
+      magenta: '#8c738c'
+      cyan: '#6d96a5'
+      white: '#aeb3bb'
+
+colors: *nord
 
 # Visual Bell
 #

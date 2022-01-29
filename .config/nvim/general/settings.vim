@@ -100,4 +100,9 @@ endif
 let g:edge_style = 'neon'
 let g:edge_enable_italic = 1
 let g:edge_disable_italic_comment = 0
-colorscheme edge
+" colorscheme edge
+colorscheme nord
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
+let g:nord_underline = 1
+hi! link LineNr Comment

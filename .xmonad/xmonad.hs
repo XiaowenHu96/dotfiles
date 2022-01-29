@@ -417,7 +417,7 @@ myStartupHook = do
   -- notification daemon
   spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon &"
   -- Xscreensaver
-  spawn "xscreensaver -no-splash"
+  -- spawn "xscreensaver -no-splash"
   -- trayer
   spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x282828 --height 20 --monitor primary &"
   -- picom transparcy

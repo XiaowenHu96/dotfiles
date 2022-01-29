@@ -5,9 +5,9 @@
 Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=14:bold:antialias=true"
        -- After install fontAwesome, make sure the font name is correct 
        -- by using fc-list | grep "Awesome" (arch)
-       , additionalFonts = [ "xft:Font Awesome 5 Free Solid:style=Solid:pixelsize=14", "xft:Font Awesome 5 Free Regular:style=Regular:pixelsize=13"]
-       , bgColor = "#282828"
-       , fgColor = "#b57014"
+       , additionalFonts = [ "xft:Font Awesome 5 Free Solid:style=Solid:pixelsize=13", "xft:Font Awesome 5 Free Regular:style=Regular:pixelsize=13"]
+       , bgColor = "#2E3440"
+       , fgColor = "#88C0D0"
        , position = Top
        , lowerOnStart = True
        , hideOnStart = False
@@ -18,7 +18,7 @@ Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=14:bold:
                       -- OS logo and color
                       Run Com "/home/xiaowen/.config/xmobar/os-logo.sh" [] "os_logo" 0
                       -- Battery state
-                    , Run Com "/home/xiaowen/.config/xmobar/battery-state.py" [] "battery" 30
+                    --, Run Com "/home/xiaowen/.config/xmobar/battery-state.py" [] "battery" 30
                       -- Time and date
                     , Run Date "<fn=2> </fn>%d %b %Y (%H:%M)" "date" 50
                       -- Network up and down
@@ -54,6 +54,5 @@ Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=14:bold:
                       \<fc=#82AAFF>%dynnetwork% </fc><fc=#666666>| </fc>\
                       \<fc=#8BE9FD>%date% </fc><fc=#666666>| </fc>\
                       \<action=`pavucontrol` button=1><fc=#FFB6B3>%default:Master%</fc> </action><fc=#666666>|</fc> \
-                      \%battery%\
                       \%trayerpad%"
         }

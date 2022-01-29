@@ -380,18 +380,18 @@ myLogHook xmprocs = do
     where primaryXmobarPP xm = (xmobarPP
                                 {   ppOutput          = hPutStrLn xm
                                   , ppTitle           = xmobarColor "#ebdbb2" "" . shorten 60
-                                  , ppCurrent         = xmobarColor "#fabf2f" "" . wrap "[ " "]"
-                                  , ppVisible         = xmobarColor "#fabf2f" "" 
+                                  , ppCurrent         = xmobarColor "#5E81AC" "" . wrap "[ " "]"
+                                  , ppVisible         = xmobarColor "#5E81AC" "" 
                                   , ppHiddenNoWindows = id                   
                                   , ppSep             = "<fc=#f8f8f2> : </fc>"
                                 })
           secondaryXmobarPP xm = (xmobarPP
                                 {   ppOutput          = hPutStrLn xm
                                   , ppTitle           = \x -> ""
-                                  , ppCurrent         = xmobarColor "#d0d0d0" "" . wrap "[ " "]"
-                                  , ppVisible         = xmobarColor "#d0d0d0" "" 
-                                  , ppHidden          = xmobarColor "#d0d0d0" "" 
-                                  , ppHiddenNoWindows = xmobarColor "#d0d0d0" ""
+                                  , ppCurrent         = xmobarColor "#D8DEE9" "" . wrap "[ " "]"
+                                  , ppVisible         = xmobarColor "#D8DEE9" "" 
+                                  , ppHidden          = xmobarColor "#D8DEE9" "" 
+                                  , ppHiddenNoWindows = xmobarColor "#D8DEE9" ""
                                   , ppSep             = "<fc=#d0d0d0> : </fc>"
                                 })
 
@@ -413,7 +413,7 @@ myStartupHook = do
   -- bluetooth applet
   spawnOnce "blueman-applet &"
   -- fcitx applet
-  spawnOnce "fcitx &"
+  -- spawnOnce "fcitx &"
   -- notification daemon
   spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon &"
   -- Xscreensaver

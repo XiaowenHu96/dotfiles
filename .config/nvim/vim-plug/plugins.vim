@@ -76,6 +76,9 @@ Plug 'XiaowenHu96/gruvbox'
 " Vim-dark colorscheme
 Plug 'XiaowenHu96/onedark.vim', { 'branch': 'ALESupport' }
 
+" Vim-Nord theme
+Plug 'arcticicestudio/nord-vim'
+
 " Vim latex editor
 Plug 'https://github.com/lervag/vimtex'
 

@@ -15,7 +15,7 @@ let g:vimtext_compiler_progname="nvr"
 " Note: The Zathura and MuPDF viewers, if used, add a hook to this list in
 "       order to store the viewer X window ID in order to prevent multiple
 "       viewer windows. (See help vim-tex)
-let g:vimtex_compiler_callback_hooks = ['ZathuraHook']
+" let g:vimtex_compiler_callback_hooks = ['ZathuraHook']
 
 function! ZathuraHook(status)
   echom a:status
@@ -34,25 +34,25 @@ let g:vimtex_compiler_latexmk = {
     \}
 
 " Manage compile output 1 for on 0 for off
-let g:vimtex_quickfix_latexlog = {
-      \ 'default' : 1,
-      \ 'general' : 1,
-      \ 'references' : 1,
-      \ 'overfull' : 0,
-      \ 'underfull' : 0,
-      \ 'font' : 1,
-      \ 'packages' : {
-      \   'default' : 1,
-      \   'general' : 1,
-      \   'babel' : 1,
-      \   'biblatex' : 1,
-      \   'fixltx2e' : 1,
-      \   'hyperref' : 1,
-      \   'natbib' : 1,
-      \   'scrreprt' : 1,
-      \   'titlesec' : 1,
-      \ },
-      \}
+" let g:vimtex_quickfix_latexlog = {
+"       \ 'default' : 1,
+"       \ 'general' : 1,
+"       \ 'references' : 1,
+"       \ 'overfull' : 0,
+"       \ 'underfull' : 0,
+"       \ 'font' : 1,
+"       \ 'packages' : {
+"       \   'default' : 1,
+"       \   'general' : 1,
+"       \   'babel' : 1,
+"       \   'biblatex' : 1,
+"       \   'fixltx2e' : 1,
+"       \   'hyperref' : 1,
+"       \   'natbib' : 1,
+"       \   'scrreprt' : 1,
+"       \   'titlesec' : 1,
+"       \ },
+"       \}
 
 " DO not open qucik fix if there is only warings
 let g:vimtex_quickfix_open_on_warning = 0

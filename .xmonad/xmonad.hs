@@ -379,7 +379,7 @@ myLogHook xmprocs = do
         (return ())
     where primaryXmobarPP xm = (xmobarPP
                                 {   ppOutput          = hPutStrLn xm
-                                  , ppTitle           = xmobarColor "#ebdbb2" "" . shorten 60
+                                  , ppTitle           = xmobarColor "#EBCB8B" "" . shorten 60
                                   , ppCurrent         = xmobarColor "#5E81AC" "" . wrap "[ " "]"
                                   , ppVisible         = xmobarColor "#5E81AC" "" 
                                   , ppHiddenNoWindows = id                   

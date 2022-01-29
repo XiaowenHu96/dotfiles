@@ -13,13 +13,23 @@ static const char *prompt      = NULL;      /* -p  option; prompt to the left of
 // gruvbox
 static const char *colors[SchemeLast][2] = {
 	/*     fg         bg       */
-	[SchemeNorm] = { "#a89984", "#282828" },
-	[SchemeSel] = { "#a89984", "#3c3836" },
-	[SchemeSelHighlight] = { "#d79921", "#3c3836" },
-	[SchemeNormHighlight] = { "#d79921", "#282828" },
+	[SchemeNorm] = { "#D8DEE9", "#2E3440" },
+	[SchemeSel] = { "#ECEFF4", "#434C5E" },
+	[SchemeSelHighlight] = { "#5E81AC", "#434C5E" },
+	[SchemeNormHighlight] = { "#88C0D0", "#2E3440" },
 	[SchemeOut] = { "#ff5555", "#00ffff" }, // Xiaowen: I'm not sure what this for
 };
 static const unsigned int border_width = 5;
+
+
+/* static const char *colors[SchemeLast][2] = { */
+/* 	/1*     fg         bg       *1/ */
+/* 	[SchemeNorm] = { "#a89984", "#282828" }, */
+/* 	[SchemeSel] = { "#a89984", "#3c3836" }, */
+/* 	[SchemeSelHighlight] = { "#d79921", "#3c3836" }, */
+/* 	[SchemeNormHighlight] = { "#d79921", "#282828" }, */
+/* 	[SchemeOut] = { "#ff5555", "#00ffff" }, // Xiaowen: I'm not sure what this for */
+/* }; */
 
 // draula theme
 /* static const char *colors[SchemeLast][2] = { */

@@ -122,7 +122,7 @@ export PATH="/usr/local/opt/sqlite/bin:$PATH"
 # Solve gettext warning
 export LC_ALL=en_US.UTF-8
 export TERM='xterm-256color'
-export EDITOR="/usr/bin/nvim"
+export EDITOR="/usr/local/bin/nvim"
 # Start vim as server for vimtex backward search
 export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 

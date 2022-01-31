@@ -117,7 +117,7 @@ Plug 'whonore/Coqtail'
 " Vimwiki
 Plug 'vimwiki/vimwiki'
 
-" easy-motion
-Plug 'easymotion/vim-easymotion'
+" sneak
+Plug 'justinmk/vim-sneak'
 
 call plug#end()

@@ -5,7 +5,7 @@
 Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=20:bold:antialias=true"
        -- After install fontAwesome, make sure the font name is correct 
        -- by using fc-list | grep "Awesome" (arch)
-       , additionalFonts = [ "xft:Font Awesome 5 Free Solid:style=Solid:pixelsize=20", "xft:Font Awesome 5 Free Regular:style=Regular:pixelsize=20"]
+       , additionalFonts = [ "xft:Font Awesome 6 Free Solid:style=Solid:pixelsize=20", "xft:Font Awesome 6 Free Regular:style=Regular:pixelsize=20"]
        , bgColor = "#3B4252"
        , fgColor = "#88C0D0"
        , position = Top
@@ -18,7 +18,7 @@ Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=20:bold:
                       -- OS logo and color
                       Run Com "/home/xiaowen/.config/xmobar/os-logo.sh" [] "os_logo" 0
                       -- Time and date
-                    , Run Date "<fn=2> </fn>%d %b %Y (%H:%M)" "date" 50
+                    , Run Date "<fn=2></fn>%d %b %Y (%H:%M)" "date" 50
                       -- Network up and down
                     , Run DynNetwork [ "-t" , "<fn=1></fn> <tx>kB/s, <rx>kB/s"] 10
                       -- Cpu usage in percent

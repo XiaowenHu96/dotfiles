@@ -77,7 +77,7 @@ source $HOME/.config/nvim/vim-plug/rainbow.vim
 source $HOME/.config/nvim/vim-plug/treesitter.vim
 
 " sneak
-source $HOME/.config/nvim/vim-plug/sneak.vim
+" source $HOME/.config/nvim/vim-plug/sneak.vim
 
 " Finally load which-key
 source $HOME/.config/nvim/vim-plug/which-key.vim

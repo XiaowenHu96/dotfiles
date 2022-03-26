@@ -139,7 +139,10 @@ Plug 'preservim/nerdtree'
 " Treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
+" Tabular
+Plug 'https://github.com/godlygeek/tabular'
+
 " sneak
-Plug 'justinmk/vim-sneak'
+" Plug 'justinmk/vim-sneak'
 
 call plug#end()

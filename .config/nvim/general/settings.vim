@@ -92,6 +92,42 @@ function __FormatIsEOL()
     return col(".") == col("$")
 endfunction
 
+
+" Customize * search behavior
+
+" https://stackoverflow.com/questions/1533565/how-to-get-visually-selected-text-in-vimscript
+function! GetVisualSelection()
+    if mode()=="v"
+        let [line_start, column_start] = getpos("v")[1:2]
+        let [line_end, column_end] = getpos(".")[1:2]
+    else
+        let [line_start, column_start] = getpos("'<")[1:2]
+        let [line_end, column_end] = getpos("'>")[1:2]
+    end
+    if (line2byte(line_start)+column_start) > (line2byte(line_end)+column_end)
+        let [line_start, column_start, line_end, column_end] =
+        \   [line_end, column_end, line_start, column_start]
+    end
+    let lines = getline(line_start, line_end)
+    if len(lines) == 0
+            return ''
+    endif
+    let lines[-1] = lines[-1][: column_end - 1]
+    let lines[0] = lines[0][column_start - 1:]
+    return join(lines, "\n")
+endfunction
+
+function! SelectSearch()
+    let @/ = GetVisualSelection()
+    " call feedkeys("/\<CR>")
+    call feedkeys("n")
+endfunction
+
+" search current selected
+vnoremap * :call SelectSearch()<cr>
+" search current word, but do not advance
+nnoremap * *N
+
 " colorscheme: Edge
 if has('termguicolors')
   set termguicolors

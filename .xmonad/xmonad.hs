@@ -311,11 +311,14 @@ myManageHook = composeAll
     -- Network control
     , resource =? "nm-connection-editor"    --> doFloat
     -- File manager
-    , resource =? "org.gnome.Nautilus"  --> doFloat
+    -- , resource =? "org.gnome.Nautilus"  --> doFloat
+    , resource =? "pcmanfm"  --> doFloat
     -- Skype
     , className =? "Skype"          --> doShift (myWorkspaces !! 3)
     -- Ranger
     , resource =? "AlacrittyRanger"   --> doRectFloat (W.RationalRect 0.15 0.15 0.7 0.7)
+    -- Wechat
+    , className =? "Wine"   --> doFloat
     -- Zoom
     -- , className =? "zoom"          --> doShift (myWorkspaces !! 3)
     -- Spotify not done. Xiaowen: Stupid spotify ignore ICCCM, don't know how to fix
@@ -372,7 +375,7 @@ myStartupHook = do
   -- notification daemon
   spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon &"
   -- trayer, manage applet icons
-  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x383c4a --height 20 &"
+  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x3b4252 --height 23 --iconspacing 4 &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.

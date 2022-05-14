@@ -2,10 +2,10 @@
 -- Use flaticon to find nice icon :)
 -- Or use AwesomeFont to find icon, it much nicer and easy to intergate with any theme.
 
-Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=20:bold:antialias=true"
+Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=23:bold:antialias=true"
        -- After install fontAwesome, make sure the font name is correct 
        -- by using fc-list | grep "Awesome" (arch)
-       , additionalFonts = [ "xft:Font Awesome 6 Free Solid:style=Solid:pixelsize=20", "xft:Font Awesome 6 Free Regular:style=Regular:pixelsize=20"]
+       , additionalFonts = [ "xft:Font Awesome 6 Free Solid:style=Solid:pixelsize=23", "xft:Font Awesome 6 Free Regular:style=Regular:pixelsize=23"]
        , bgColor = "#3B4252"
        , fgColor = "#88C0D0"
        , position = Top
@@ -32,7 +32,7 @@ Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=20:bold:
                     , Run StdinReader
                       -- Auto detect padding for trayer, see the script for detail.
                     , Run Com "/home/xiaowen/.config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 10
-                    , Run Volume "default" "Master" [ "-t", "<status> <volume>%"
+                    , Run Volume "pulse" "Master" [ "-t", "<status> <volume>%"
                                                      ,"--"                      -- Start extra argument
                                                      ,"--off", "<fn=1></fn>"
                                                      ,"--offc", "#c3e88d"
@@ -51,6 +51,6 @@ Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=20:bold:
                       \<fc=#FF5555>%memory% </fc><fc=#666666>| </fc>\
                       \<fc=#82AAFF>%dynnetwork% </fc><fc=#666666>| </fc>\
                       \<fc=#8BE9FD>%date% </fc><fc=#666666>| </fc>\
-                      \<action=`pavucontrol` button=1><fc=#c3e88d>%default:Master%</fc> </action>\
+                      \<action=`pavucontrol` button=1><fc=#c3e88d>%pulse:Master%</fc> </action>\
                       \%trayerpad%\"
         }

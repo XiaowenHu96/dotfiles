@@ -29,7 +29,12 @@ import XMonad.Layout.WindowNavigation
 import XMonad.Layout.BoringWindows 
 import XMonad.Layout.Spacing
 import XMonad.Prompt
+import XMonad.Prompt.Workspace
 import XMonad.Prompt.XMonad
+import XMonad.Actions.DynamicWorkspaces
+import XMonad.Core
+import Text.Read
+import Data.List
 
 
 import qualified XMonad.StackSet as W
@@ -66,14 +71,48 @@ myModMask       = mod4Mask  -- use the super key
 -- of this list.
 
 -- For xmobar
-myWorkspaces    = ["\xf120 ","\xe62b ", "\xf7ae ","\xf27b ", "5 ", "6 ", "7 ", "8 ", "9 "]
+-- myWorkspaces    = ["\xf120 ","\xe62b ", "\xf7ae ","\xf27b ", "5 ", "6 ", "7 ", "8 ", "9 "]
+myWorkspaces    = ["1 ","2 ", "3 ","4 ", "5 ", "6 ", "7 ", "8 ", "9 "]
 -- For polybar only defined an id, symbol can be defined in polybar config
 -- myWorkspaces    = map show  [1..9]
 
--- Border colors for unfocused and focused windows, respectively.
---
-myNormalBorderColor  = "#3B4252"
+-- Theme
+myNormalBorderColor  = "#383c4a"
 myFocusedBorderColor = "#5E81AC"
+myActiveColor = "#404552"
+myInActiveColor = "#383c4a"
+myActiveTextColor = "#dddddd"
+myInActiveTextColor = "#7f7f7f"
+myFont = "xft:JetBrainsMono Nerd Font:size=12"
+
+-- XPConfig (for xmonad promot)
+
+-- similar to built-in selectWorkspace
+-- but does not add the newworkspace if the name is not found
+selectWorkspaceIfExist :: XPConfig -> X()
+selectWorkspaceIfExist conf = workspacePrompt conf $ \w ->
+                       do s <- gets windowset
+                          if W.tagMember w s then windows $ W.greedyView w
+                          else return ()
+                            
+isBasicWindowName :: String -> Bool
+isBasicWindowName name = case (readMaybe name :: Maybe Int) of
+    Nothing -> False
+    Just i -> True
+
+myXPConfig :: XPConfig
+myXPConfig = def {
+    position = CenteredAt 0.5 0.5
+    ,height = 56
+    ,font = myFont
+    ,borderColor = myFocusedBorderColor
+    ,bgColor = myInActiveColor
+    ,bgHLight = myActiveColor
+    ,fgColor = myActiveTextColor
+    ,fgHLight = myFocusedBorderColor
+    ,complCaseSensitivity  = CaseInSensitive
+    ,sorter = (\x y -> filter (not . isBasicWindowName) y )         -- never show basic window in search result
+}
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -86,6 +125,20 @@ getCurrentLayout :: X String
 getCurrentLayout = do
   workspaces <- gets windowset
   return $ description . W.layout . W.workspace . W.current $ workspaces
+
+getCurrentScreenAsRectangle :: X Rectangle
+getCurrentScreenAsRectangle = do
+  workspaces <- gets windowset
+  return $ screenRect . W.screenDetail . W.current $ workspaces
+
+getCurrentScreenHeight = do
+  rect <- getCurrentScreenAsRectangle
+  return $ rect_height rect
+
+getCurrentScreenWidth = do
+  rect <- getCurrentScreenAsRectangle
+  return $ rect_width rect
+
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
@@ -195,6 +248,14 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
+
+    -- switch workspace
+    , ((modm .|. shiftMask, xK_p), selectWorkspaceIfExist myXPConfig)
+
+    -- create workspace
+    -- , ((modm .|. shiftMask, xK_bracketright), appendWorkspacePrompt myXPConfig)
+
+    , ((modm .|. shiftMask, xK_d), removeEmptyWorkspace)
     ]
     ++
 
@@ -278,9 +339,9 @@ myLayout = boringWindows (tiled ||| grid ||| tabbed ||| Mirror tiled ||| Full)
      -- Xmonad need to be restart to see effect.
      -- Mostly arc theme
      tab_config = def { 
-                  activeColor = "#404552", inactiveColor = "#383c4a", 
-                  activeBorderColor = myFocusedBorderColor, inactiveBorderColor = "#383c4a",
-                  activeTextColor = "#dddddd", inactiveTextColor = "#7f7f7f",
+                  activeColor = myActiveColor, inactiveColor = myInActiveColor,
+                  activeBorderColor = myFocusedBorderColor, inactiveBorderColor = myNormalBorderColor,
+                  activeTextColor = myActiveTextColor, inactiveTextColor = myInActiveTextColor,
                   fontName = "xft:JetBrainsMono Nerd Font:size=12",
                   decoHeight = 25
                   }
@@ -313,8 +374,7 @@ myManageHook = composeAll
     -- File manager
     -- , resource =? "org.gnome.Nautilus"  --> doFloat
     , resource =? "pcmanfm"  --> doFloat
-    -- Skype
-    , className =? "Skype"          --> doShift (myWorkspaces !! 3)
+    -- , title =? "Raven Reader"          --> doShift (myWorkspaces !! 3)
     -- Ranger
     , resource =? "AlacrittyRanger"   --> doRectFloat (W.RationalRect 0.15 0.15 0.7 0.7)
     -- Wechat
@@ -325,7 +385,16 @@ myManageHook = composeAll
     -- https://bbs.archlinux.org/viewtopic.php?id=204636
     --
     , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore ]
+    , resource  =? "kdesktop"       --> doIgnore 
+
+    , className =? "Skype"          --> doCreateShift "skype"
+    , className =? "Raven Reader"   --> doCreateShift "raven"
+    , className =? "Slack"   --> doCreateShift "slack"
+    , className =? "discord"   --> doCreateShift "discord"
+    , className =? "Thunderbird"   --> doCreateShift "mail"
+    ]
+    -- create a namespace and shift the application to that namespace
+    where doCreateShift name = ask >>= \w -> (liftX $ addWorkspace name) >> (doShift name)
 
 ------------------------------------------------------------------------
 -- Event handling
@@ -344,13 +413,24 @@ myEventHook = mempty
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
+
+-- this filter only prints basic name windows
+windowNameFilter name = if (isBasicWindowName name) then name else ""
+-- wrap window name and append space accordingly
+smartWrap name = wrap newHead newTail name
+    where 
+      newHead = if (head name) == ' ' then "[" else "[ "
+      newTail = if (last name) == ' ' then "]" else " ]"
+          
+
 myLogHook xmproc = dynamicLogWithPP xmobarPP
                   { ppOutput          = hPutStrLn xmproc
                   , ppTitle           = xmobarColor "#f8f8f2" "" . shorten 60
-                  , ppCurrent         = xmobarColor "#5E81AC" "" . wrap "[ " "]" -- Current workspace in xmobar
-                  , ppVisible         = xmobarColor "#5E81AC" ""                -- Visible but not current workspace
-                  , ppHiddenNoWindows = id                                      -- Show all hidden windows
-                  , ppSep             = "<fc=#f8f8f2> : </fc>"                  -- Seperator and color
+                  , ppCurrent         = xmobarColor "#5E81AC" "" . smartWrap -- Current workspace in xmobar
+                  , ppVisible         = xmobarColor "#5E81AC" ""                 -- Visible but not current workspace
+                  , ppHiddenNoWindows = windowNameFilter                         -- Show only basic 1-9 windows, hide app-specific window
+                  , ppHidden          = windowNameFilter                         -- Show only basic 1-9 windows, hide app-specific window
+                  , ppSep             = "<fc=#f8f8f2> : </fc>"                   -- Seperator and color
                   }
 
 ------------------------------------------------------------------------
@@ -374,8 +454,9 @@ myStartupHook = do
   -- spawnOnce "fcitx &"
   -- notification daemon
   spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon &"
+  spawnOnce "pulseaudio --start"
   -- trayer, manage applet icons
-  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x3b4252 --height 23 --iconspacing 4 &"
+  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x3b4252 --height 35 --iconspacing 4 &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -408,8 +489,7 @@ main = do
           manageHook         = myManageHook <+> 
                                manageDocks, -- Manage dock appearance.
 
-          handleEventHook    = myEventHook <+>
-                               fullscreenEventHook, -- Solve chromium fullscreen
+          handleEventHook    = myEventHook,
 
           logHook            = myLogHook xmproc,
           startupHook        = myStartupHook

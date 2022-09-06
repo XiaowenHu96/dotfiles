@@ -3,10 +3,11 @@
 " Use <C-l> to accept suggestion.
 " Use <Tab> to circle.
 " pumvisible() ? A : B -> if cond then A else B
-inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr><C-l> pumvisible() ? "\<C-y>" : "\<C-l>"
-inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<Down>"
+" inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<Up>"
+" inoremap <expr><C-l> pumvisible() ? "\<C-y>" : "\<C-l>"
+" inoremap <expr><Tab> pumvisible() ? "\<C-n>" : "\<TAB>"
+" NOTE: Since coc 0.8.x, custmized command is required to build autocomplete actions, see blow ../vim-plug/coc.vim
 
 " Use alt + hjkl to resize windows
 nnoremap <M-j>    :resize -2<CR>

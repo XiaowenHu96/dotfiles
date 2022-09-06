@@ -7,9 +7,8 @@
 "
 "
 
-let g:tex_flavor = "pdflatex"
-let g:vimtex_view_method = 'zathura'
-let g:vimtext_compiler_progname="nvr"
+let g:tex_flavor = "latex"
+let g:vimtex_view_method = 'sioyek'
 
 
 " Note: The Zathura and MuPDF viewers, if used, add a hook to this list in
@@ -22,16 +21,16 @@ function! ZathuraHook(status)
 endfunction
 
 " Basic compile flags
-let g:vimtex_compiler_latexmk = {
-    \ 'options' : [
-    \   '-pdf',
-    \   '-shell-escape',
-    \   '-verbose',
-    \   '-file-line-error',
-    \   '-synctex=1',
-    \   '-interaction=nonstopmode',
-    \ ],
-    \}
+" let g:vimtex_compiler_latexmk = {
+"     \ 'options' : [
+"     \   '-pdf',
+"     \   '-shell-escape',
+"     \   '-verbose',
+"     \   '-file-line-error',
+"     \   '-synctex=1',
+"     \   '-interaction=nonstopmode',
+"     \ ],
+"     \}
 
 " Manage compile output 1 for on 0 for off
 " TODO deprecated

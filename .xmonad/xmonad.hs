@@ -28,6 +28,7 @@ import XMonad.Layout.Simplest
 import XMonad.Layout.WindowNavigation
 import XMonad.Layout.BoringWindows 
 import XMonad.Layout.Spacing
+import XMonad.Layout.Magnifier
 import XMonad.Prompt
 import XMonad.Prompt.Workspace
 import XMonad.Prompt.XMonad
@@ -45,6 +46,7 @@ import qualified Data.Map        as M
 --
 myTerminal      = "alacritty" -- set default terminal
 myDmenu         = "dmenu_run -fn 'Fira Code Medium:size=15' -c -l 20 -i" -- font, center, lines, case-insensitive
+myRofi          = "rofi -show combi"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -72,7 +74,7 @@ myModMask       = mod4Mask  -- use the super key
 
 -- For xmobar
 -- myWorkspaces    = ["\xf120 ","\xe62b ", "\xf7ae ","\xf27b ", "5 ", "6 ", "7 ", "8 ", "9 "]
-myWorkspaces    = ["1 ","2 ", "3 ","4 ", "5 ", "6 ", "7 ", "8 ", "9 "]
+myWorkspaces    = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 -- For polybar only defined an id, symbol can be defined in polybar config
 -- myWorkspaces    = map show  [1..9]
 
@@ -152,7 +154,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
                                           )
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn myDmenu)
+    , ((modm,               xK_p     ), spawn myRofi)
 
     -- launch gmrun
     -- , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
@@ -253,7 +255,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_p), selectWorkspaceIfExist myXPConfig)
 
     -- create workspace
-    -- , ((modm .|. shiftMask, xK_bracketright), appendWorkspacePrompt myXPConfig)
+    , ((modm .|. shiftMask, xK_bracketright), appendWorkspacePrompt myXPConfig)
 
     , ((modm .|. shiftMask, xK_d), removeEmptyWorkspace)
     ]
@@ -311,13 +313,16 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 --    The keybindings changes from W.movement to boringWindows.movement
 --    Not sure if it going to bring any sub-effect...
 
-myLayout = boringWindows (tiled ||| grid ||| tabbed ||| Mirror tiled ||| Full)
+myLayout = boringWindows (tiled ||| grid ||| magnifier_grid ||| tabbed ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = renamed [XMonad.Layout.Renamed.Replace "tall"] $ enableSpacing $  ResizableTall nmaster delta ratio []
 
      -- grid layout, usefull for putting skype, wechat, sportify ..
      grid    = renamed [XMonad.Layout.Renamed.Replace "grid"] $ enableSpacing $ GridRatio (16/10)
+
+     -- grid with magnifier
+     magnifier_grid    = renamed [XMonad.Layout.Renamed.Replace "magnified grid"] $ enableSpacing $ magnifier(GridRatio (16/10))
 
      -- tabbed layout, for reading pdfs..
      -- Put enableSpacing before addTabs so that tabbar size is correctly determined.
@@ -379,6 +384,8 @@ myManageHook = composeAll
     , resource =? "AlacrittyRanger"   --> doRectFloat (W.RationalRect 0.15 0.15 0.7 0.7)
     -- Wechat
     , className =? "Wine"   --> doFloat
+    , className =? "wnr"   --> doRectFloat (W.RationalRect 0.3 0.3 0.3 0.3)
+    , className =? "Wnr"   --> doRectFloat (W.RationalRect 0.3 0.3 0.3 0.3)
     -- Zoom
     -- , className =? "zoom"          --> doShift (myWorkspaces !! 3)
     -- Spotify not done. Xiaowen: Stupid spotify ignore ICCCM, don't know how to fix
@@ -392,6 +399,8 @@ myManageHook = composeAll
     , className =? "Slack"   --> doCreateShift "slack"
     , className =? "discord"   --> doCreateShift "discord"
     , className =? "Thunderbird"   --> doCreateShift "mail"
+    , className =? "Zotero"   --> doCreateShift "zotero"
+    , className =? "TelegramDesktop" --> doCreateShift "telegram"
     ]
     -- create a namespace and shift the application to that namespace
     where doCreateShift name = ask >>= \w -> (liftX $ addWorkspace name) >> (doShift name)
@@ -426,8 +435,8 @@ smartWrap name = wrap newHead newTail name
 myLogHook xmproc = dynamicLogWithPP xmobarPP
                   { ppOutput          = hPutStrLn xmproc
                   , ppTitle           = xmobarColor "#f8f8f2" "" . shorten 60
-                  , ppCurrent         = xmobarColor "#5E81AC" "" . smartWrap -- Current workspace in xmobar
-                  , ppVisible         = xmobarColor "#5E81AC" ""                 -- Visible but not current workspace
+                  , ppCurrent         = xmobarColor "#8FBCBB" "" . smartWrap -- Current workspace in xmobar
+                  , ppVisible         = xmobarColor "#8FBCBB " ""                 -- Visible but not current workspace
                   , ppHiddenNoWindows = windowNameFilter                         -- Show only basic 1-9 windows, hide app-specific window
                   , ppHidden          = windowNameFilter                         -- Show only basic 1-9 windows, hide app-specific window
                   , ppSep             = "<fc=#f8f8f2> : </fc>"                   -- Seperator and color
@@ -454,9 +463,9 @@ myStartupHook = do
   -- spawnOnce "fcitx &"
   -- notification daemon
   spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon &"
-  spawnOnce "pulseaudio --start"
+  -- spawnOnce "pulseaudio --start"
   -- trayer, manage applet icons
-  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 --tint 0x3b4252 --height 35 --iconspacing 4 &"
+  spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 30 --tint 0x3b4252 --height 35 --iconspacing 4 &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.

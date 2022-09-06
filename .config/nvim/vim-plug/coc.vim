@@ -26,6 +26,10 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 hi CocErrorSign ctermfg=Red guifg=#e06c75
 hi CocErrorHighlight gui=underline guifg=Red
 
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1): "\<Tab>"
+inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
+inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-j>"
+
 " " Add (Neo)Vim's native statusline support.
 " " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " " provide custom statusline: lightline.vim, vim-airline.

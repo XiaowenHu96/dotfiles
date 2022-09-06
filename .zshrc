@@ -65,7 +65,6 @@ ZSH_THEME="robbyrussell"
 plugins=(
   git
   vi-mode
-  fzf
   zsh-autosuggestions
 )
 source $ZSH/oh-my-zsh.sh
@@ -108,7 +107,7 @@ export PATH="/usr/local/bin:/usr/local/opt/bison/bin:/home/xiaowen/.gem/ruby/2.7
 export PATH=$PATH:/usr/local/go/bin
 # Ghcup path
 export PATH="$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH"
-export PATH="/home/xiaowen/.ghcup/ghc/9.0.1/bin:$PATH"
+export PATH="/home/xiaowen/.ghcup/ghc/9.2.1/bin:$PATH"
 
 autoload -Uz compinit
 compinit
@@ -142,3 +141,24 @@ alias vimlsp='vim -u ~/souffle-lsp/vim-client/vimrc'
 # export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim
 
 source /home/xiaowen/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /etc/profile.d/emscripten.sh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/xiaowen/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/xiaowen/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/xiaowen/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/xiaowen/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+#
+alias vimdiff='nvim -d'
+
+export PATH="/home/xiaowen/gcc-arm-non-eabi/gcc-arm-none-eabi-10.3-2021.10/bin:$PATH"
+export CS140E_2022_PATH="/home/xiaowen/cs140e-22win/"

@@ -53,14 +53,15 @@ xset s on
 xset s 1200
 xss-lock -- i3lock -i /home/xiaowen/wallpapers/space.png -L &
 
-picom &
+picom --experimental-backend &
+
+solaar --window=hide &
 
 # Important! must source in this file and before starting wm
 # https://wiki.archlinux.org/title/fcitx
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
-# export QT_STYLE_OVERRIDE=Kvantum
 
 
 # QT theme setting also need to be set before WM

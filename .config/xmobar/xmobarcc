@@ -2,18 +2,19 @@
 -- Use flaticon to find nice icon :)
 -- Or use AwesomeFont to find icon, it much nicer and easy to intergate with any theme.
 
-Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=23:bold:antialias=true"
+Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=24:antialias=true,LXGW WenKai:style=Regular:pixelsize=24"
        -- After install fontAwesome, make sure the font name is correct 
        -- by using fc-list | grep "Awesome" (arch)
        , additionalFonts = [ "xft:Font Awesome 6 Free Solid:style=Solid:pixelsize=23", "xft:Font Awesome 6 Free Regular:style=Regular:pixelsize=23"]
        , bgColor = "#3B4252"
-       , fgColor = "#88C0D0"
+       , fgColor = "#81A1C1"
        , position = Top
        , lowerOnStart = True
        , hideOnStart = False
        , allDesktops = True
        , persistent = True
        , iconRoot = "/home/xiaowen/.config/xmobar/xpm"
+       , alpha = 220
        , commands = [ 
                       -- OS logo and color
                       Run Com "/home/xiaowen/.config/xmobar/os-logo.sh" [] "os_logo" 0

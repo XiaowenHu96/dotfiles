@@ -10,13 +10,14 @@
 import XMonad
 import XMonad.Hooks.DynamicLog
 import Data.Monoid
+import Control.Monad
 import System.Exit
 import System.IO
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.EwmhDesktops
-import XMonad.Hooks.DynamicProperty
+import XMonad.Hooks.OnPropertyChange
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.ResizableTile
@@ -27,18 +28,24 @@ import XMonad.Layout.SubLayouts
 import XMonad.Layout.Simplest
 import XMonad.Layout.WindowNavigation
 import XMonad.Layout.BoringWindows 
+import XMonad.Layout.Minimize 
+import XMonad.Util.Minimize
 import XMonad.Layout.Spacing
 import XMonad.Layout.Magnifier
 import XMonad.Prompt
 import XMonad.Prompt.Workspace
 import XMonad.Prompt.XMonad
 import XMonad.Actions.DynamicWorkspaces
+import XMonad.Actions.Minimize
+import XMonad.Actions.WithAll
 import XMonad.Core
 import Text.Read
 import Data.List
+import Graphics.X11.ExtraTypes.XF86
 
 
 import qualified XMonad.StackSet as W
+import qualified XMonad.Util.ExtensibleState as XS
 import qualified Data.Map        as M
 
 -- The preferred terminal program, which is used in a binding below and by
@@ -46,7 +53,7 @@ import qualified Data.Map        as M
 --
 myTerminal      = "alacritty" -- set default terminal
 myDmenu         = "dmenu_run -fn 'Fira Code Medium:size=15' -c -l 20 -i" -- font, center, lines, case-insensitive
-myRofi          = "rofi -show combi"
+myRofi          = "rofi -m 1 -show combi"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -141,6 +148,19 @@ getCurrentScreenWidth = do
   rect <- getCurrentScreenAsRectangle
   return $ rect_width rect
 
+toggleFloatVisibility :: X()
+toggleFloatVisibility = do
+  floats <- gets (W.floating . windowset)
+  layout <- getCurrentLayout
+  if (layout /= "full") 
+  then return ()
+  else if M.null floats
+  then withAll maximizeWindow   -- maximize all window
+  else withAll (\w ->           -- minimize all floating window
+      if w `M.member` floats
+      then minimizeWindow w
+      else return ())
+
 
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
@@ -222,9 +242,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. controlMask, xK_k), sendMessage $ pullGroup U)
     , ((modm .|. controlMask, xK_j), sendMessage $ pullGroup D)
     
-    -- merge all / Unmerge the current windows.
+    -- merge/unmerge the current windows.
     , ((modm .|. controlMask, xK_m), withFocused (sendMessage . MergeAll))
     , ((modm .|. controlMask, xK_u), withFocused (sendMessage . UnMerge))
+
+    -- toggle floating window  (Only in full)
+    , ((modm,                 xK_m), toggleFloatVisibility)
 
     -- , . to switch prev / next tabs
     , ((modm,              xK_comma), onGroup W.focusUp')
@@ -258,6 +281,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_bracketright), appendWorkspacePrompt myXPConfig)
 
     , ((modm .|. shiftMask, xK_d), removeEmptyWorkspace)
+
+    , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 10")
+    , ((0, xF86XK_MonBrightnessUp), spawn "xbacklight -inc 10")
     ]
     ++
 
@@ -313,8 +339,10 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 --    The keybindings changes from W.movement to boringWindows.movement
 --    Not sure if it going to bring any sub-effect...
 
-myLayout = boringWindows (tiled ||| grid ||| magnifier_grid ||| tabbed ||| Mirror tiled ||| Full)
+myLayout = boringWindows $ (tiled ||| grid ||| magnifier_grid ||| tabbed ||| Mirror tiled ||| full)
   where
+     -- A full window which supports hiding all floating windows
+     full    = renamed [XMonad.Layout.Renamed.Replace "full"] $ minimize Full
      -- default tiling algorithm partitions the screen into two panes
      tiled   = renamed [XMonad.Layout.Renamed.Replace "tall"] $ enableSpacing $  ResizableTall nmaster delta ratio []
 
@@ -393,12 +421,14 @@ myManageHook = composeAll
     --
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore 
-
+    -- Tencent meeting
+    , className =? "wemeetap"       --> doFloat
+    , className =? "netease-cloud-music"       --> doFloat
     , className =? "Skype"          --> doCreateShift "skype"
     , className =? "Raven Reader"   --> doCreateShift "raven"
     , className =? "Slack"   --> doCreateShift "slack"
     , className =? "discord"   --> doCreateShift "discord"
-    , className =? "Thunderbird"   --> doCreateShift "mail"
+    , className =? "thunderbird"   --> doCreateShift "mail"
     , className =? "Zotero"   --> doCreateShift "zotero"
     , className =? "TelegramDesktop" --> doCreateShift "telegram"
     ]
@@ -434,7 +464,7 @@ smartWrap name = wrap newHead newTail name
 
 myLogHook xmproc = dynamicLogWithPP xmobarPP
                   { ppOutput          = hPutStrLn xmproc
-                  , ppTitle           = xmobarColor "#f8f8f2" "" . shorten 60
+                  , ppTitle           = xmobarColor "#f8f8f2" "" . shorten 20
                   , ppCurrent         = xmobarColor "#8FBCBB" "" . smartWrap -- Current workspace in xmobar
                   , ppVisible         = xmobarColor "#8FBCBB " ""                 -- Visible but not current workspace
                   , ppHiddenNoWindows = windowNameFilter                         -- Show only basic 1-9 windows, hide app-specific window
@@ -462,7 +492,7 @@ myStartupHook = do
   -- fcitx applet
   -- spawnOnce "fcitx &"
   -- notification daemon
-  spawnOnce "/usr/lib/notification-daemon-1.0/notification-daemon &"
+  spawnOnce "/usr/bin/dunst &"
   -- spawnOnce "pulseaudio --start"
   -- trayer, manage applet icons
   spawnOnce "trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 30 --tint 0x3b4252 --height 35 --iconspacing 4 &"

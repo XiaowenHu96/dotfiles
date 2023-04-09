@@ -142,6 +142,10 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend upda
 " Tabular
 Plug 'https://github.com/godlygeek/tabular'
 
+" Rhubarb
+" Add GBrowse feature for fugitive
+Plug 'https://github.com/tpope/vim-rhubarb'
+
 " sneak
 " Plug 'justinmk/vim-sneak'
 

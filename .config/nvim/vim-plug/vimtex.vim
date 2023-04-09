@@ -8,7 +8,7 @@
 "
 
 let g:tex_flavor = "latex"
-let g:vimtex_view_method = 'sioyek'
+let g:vimtex_view_method = 'zathura'
 
 
 " Note: The Zathura and MuPDF viewers, if used, add a hook to this list in
@@ -19,18 +19,6 @@ let g:vimtex_view_method = 'sioyek'
 function! ZathuraHook(status)
   echom a:status
 endfunction
-
-" Basic compile flags
-" let g:vimtex_compiler_latexmk = {
-"     \ 'options' : [
-"     \   '-pdf',
-"     \   '-shell-escape',
-"     \   '-verbose',
-"     \   '-file-line-error',
-"     \   '-synctex=1',
-"     \   '-interaction=nonstopmode',
-"     \ ],
-"     \}
 
 " Manage compile output 1 for on 0 for off
 " TODO deprecated

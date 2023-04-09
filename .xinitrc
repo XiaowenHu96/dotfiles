@@ -48,32 +48,34 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+# Gnome-keyring issue
+# Source https://bbs.archlinux.org/viewtopic.php?pid=1640822#p1640822
+source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
+
+# Home screen setting
+xrandr --output HDMI-A-0 --primary --mode 3840x2160 --output eDP --same-as HDMI-A-0
+
 # screen lock
 xset s on
 xset s 1200
-xss-lock -- i3lock -i /home/xiaowen/wallpapers/space.png -L &
+xss-lock -- i3lock -S1 -B10  &
 
-picom --experimental-backend &
+picom &
 
-solaar --window=hide &
+blueman-applet &
 
-# Important! must source in this file and before starting wm
-# https://wiki.archlinux.org/title/fcitx
+# Scaling
+# Honour DPI
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+# Only steam needs it...
+# export GDK_SCALE=2
+
+# ibus input
 export GTK_IM_MODULE=ibus
 export QT_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
-
-
-# QT theme setting also need to be set before WM
-# Arch linux, set Qt5 to use gtk2 theme. (GTK and QT apps use different theme)
-# Require qt5-styleplugins, see detail
-# https://wiki.archlinux.org/index.php/Uniform_look_for_Qt_and_GTK_applications#Theme_engines
-# export QT_QPA_PLATFORMTHEME=qt5ct
-
-# Set qt5 to use Kvantum theme (which is a wrapper theme based on your choice)
-# In Kvantum engine, install the theme you like and apply
-export QT_STYLE_OVERRIDE=Kvantum
-
 ibus-daemon -drxR
-# to use ibus-rime in wine, ibus-daemon -drxR --xim
+
+solaar --window=hide &
+
 exec xmonad

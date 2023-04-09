@@ -2,13 +2,13 @@
 -- Use flaticon to find nice icon :)
 -- Or use AwesomeFont to find icon, it much nicer and easy to intergate with any theme.
 
-Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=24:antialias=true,LXGW WenKai:style=Regular:pixelsize=24"
+Config { font    = "LXGW WenKai Regular 20, JetBrainsMono Nerd Font Regular 20"
        -- After install fontAwesome, make sure the font name is correct 
        -- by using fc-list | grep "Awesome" (arch)
-       , additionalFonts = [ "xft:Font Awesome 6 Free Solid:style=Solid:pixelsize=23", "xft:Font Awesome 6 Free Regular:style=Regular:pixelsize=23"]
+       , additionalFonts = [ "Font Awesome 6 Free Solid Solid 23", "Font Awesome 6 Free Regular Regular 23"]
        , bgColor = "#3B4252"
        , fgColor = "#81A1C1"
-       , position = Top
+       , position = TopH 35
        , lowerOnStart = True
        , hideOnStart = False
        , allDesktops = True
@@ -19,7 +19,7 @@ Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=24:antia
                       -- OS logo and color
                       Run Com "/home/xiaowen/.config/xmobar/os-logo.sh" [] "os_logo" 0
                       -- Time and date
-                    , Run Date "<fn=2></fn>%d %b %Y (%H:%M)" "date" 50
+                    , Run Date "<fn=2></fn> %d %b %Y (%H:%M)" "date" 50
                       -- Network up and down
                     , Run DynNetwork [ "-t" , "<fn=1></fn> <tx>kB/s, <rx>kB/s"] 10
                       -- Cpu usage in percent
@@ -33,13 +33,21 @@ Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=24:antia
                     , Run StdinReader
                       -- Auto detect padding for trayer, see the script for detail.
                     , Run Com "/home/xiaowen/.config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 10
-                    , Run Volume "pulse" "Master" [ "-t", "<status> <volume>%"
+                    , Run Alsa "default" "Master" [ "-t", "<status> <volume>%"
                                                      ,"--"                      -- Start extra argument
                                                      ,"--off", "<fn=1></fn>"
                                                      ,"--offc", "#c3e88d"
                                                      ,"--on",  "<fn=1></fn>"
                                                      ,"--onc", "#c3e88d"
-                                                     ] 10
+                                                     ]
+                    , Run BatteryP ["BAT0"]      ["-t", "<acstatus> <left> "
+                                                  ,"-L", "20", "-H", "80"
+                                                  ,"-l", "#ff5555", "-h", "#ADDFAD"
+                                                  ,"--"
+                                                  ,"-O", ""
+                                                  ,"-o", ""
+                                                  ,"-i", ""
+                                                 ] 10
                     ]
        , sepChar = "%"
        , alignSep = "}{" 
@@ -52,6 +60,7 @@ Config { font    = "xft:JetBrainsMono Nerd Font:style=Regular:pixelsize=24:antia
                       \<fc=#FF5555>%memory% </fc><fc=#666666>| </fc>\
                       \<fc=#82AAFF>%dynnetwork% </fc><fc=#666666>| </fc>\
                       \<fc=#8BE9FD>%date% </fc><fc=#666666>| </fc>\
-                      \<action=`pavucontrol` button=1><fc=#c3e88d>%pulse:Master%</fc> </action>\
+                      \<action=`pavucontrol` button=1><fc=#c3e88d>%alsa:default:Master%</fc> </action> <fc=#666666>| </fc>\
+                      \<fc=#8BE9FD>%battery% </fc><fc=#666666>| </fc>\
                       \%trayerpad%\"
         }

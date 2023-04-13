@@ -1,6 +1,6 @@
 configuration {
 	modi: [window,run,ssh,drun,combi];
-	font: "JetBrainsMono Nerd Font:style=Regular 24";
+	font: "JetBrainsMono Nerd Font:style=Regular 12";
 /*	location: 0;*/
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
@@ -32,7 +32,7 @@ configuration {
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
-	combi-modi: "run,window";
+	combi-modi: "run,window,drun";
 	matching: "fuzzy";
 /*	tokenize: true;*/
 /*	m: "-5";*/

@@ -15,7 +15,9 @@ which_key.setup({
 which_key.register({
         d = {
             name = "dotfiles",
-            p = {":e $MYVINRC<CR>", "vimrc"}
+            p = {":e $MYVINRC<CR>", "vimrc"},
+            h = {":e ~/.config/hypr/hyprland.conf<CR>", "hyprland"},
+            w = {":e ~/.config/waybar/waybar<CR>", "waybar"}
         },
         e = {
             { ":NvimTreeOpen<cr>", "Nvim Tree" },

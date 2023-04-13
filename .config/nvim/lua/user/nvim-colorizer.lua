@@ -1,4 +1,10 @@
-require'colorizer'.setup(
+local status_ok, colorizer = pcall(require, "colorizer")
+if not status_ok then
+    print "Cannot load colorizer"
+    return
+end
+
+colorizer.setup(
     {'*';},
     {
     RGB      = true;         -- #RGB hex codes
@@ -11,4 +17,5 @@ require'colorizer'.setup(
     css_fn   = false;        -- Enable all CSS *functions*: rgb_fn, hsl_fn
     -- Available modes: foreground, background
     mode     = 'background'; -- Set the display mode.
-    })
+    }
+)

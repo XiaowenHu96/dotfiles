@@ -1,5 +1,0 @@
-let g:UltiSnipsExpandTrigger="<c-b>"
-let g:UltiSnipsListSnippets="<c-tab>"
-let g:UltiSnipsEditSplit="tabdo"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-n>"

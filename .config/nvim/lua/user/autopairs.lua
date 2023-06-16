@@ -1,8 +1,5 @@
 -- Setup nvim-cmp.
-local status_ok, npairs = pcall(require, "nvim-autopairs")
-if not status_ok then
-    return
-end
+local npairs = require("nvim-autopairs")
 
 npairs.setup {
     check_ts = true, -- use treesitter
@@ -28,19 +25,15 @@ npairs.setup {
 -- latex settings
 local Rule = require('nvim-autopairs.rule')
 npairs.add_rules({
-  -- TODO: can't support $$ $$ and $ $ at the same time, file issue
-  Rule("$", "$",{"tex", "latex"}),
-  Rule("\\[", "\\]",{"tex", "latex"}),
-  Rule("\\(", "\\)",{"tex", "latex"})
-  }
+    -- TODO: can't support $$ $$ and $ $ at the same time, file issue
+    Rule("$", "$", { "tex", "latex" }),
+    Rule("\\[", "\\]", { "tex", "latex" }),
+    Rule("\\(", "\\)", { "tex", "latex" })
+}
 )
 
-npairs.add_rule(Rule("$$","$$","tex"))
+npairs.add_rule(Rule("$$", "$$", "tex"))
 
 local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-local cmp_status_ok, cmp = pcall(require, "cmp")
-if not cmp_status_ok then
-    print "Cannot load nvim-autopairs"
-    return
-end
+local cmp = require("cmp")
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })

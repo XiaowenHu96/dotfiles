@@ -6,6 +6,4 @@ set highlight-transparency 0.3
 set highlight-active-color "#D19A66"
 set synctex true
 set sandbox none
-
-" Support for backward search with vimtex
-set synctex-editor-command "nvr --remote-slient +"%line" "%file" "
+set synctex-editor-command ' nvim --headless -c "lua TexlabInverseSearch(\"%{input}\", %{line})" '

@@ -1,8 +1,4 @@
-local status_ok, which_key = pcall(require, "which-key")
-if not status_ok then
-    print "Cannot load which-key"
-    return
-end
+local which_key = require("which-key")
 
 which_key.setup({
     layout = {
@@ -12,21 +8,28 @@ which_key.setup({
 }
 )
 
+-- TODO: Use keymap doc to manage keymaps.
 which_key.register({
-        d = {
-            name = "dotfiles",
-            p = {":e $MYVINRC<CR>", "vimrc"},
-            h = {":e ~/.config/hypr/hyprland.conf<CR>", "hyprland"},
-            w = {":e ~/.config/waybar/waybar<CR>", "waybar"}
-        },
-        e = {
-            { ":NvimTreeOpen<cr>", "Nvim Tree" },
+        a = {
+            name = "AI",
+            c = { ":ChatGPT<CR>", "ChatGPT" },
+            a = { ":ChatGPTActAs<CR>", "ChatGPT ActAs" },
         },
         b = {
             name = "buffer",
             q = { ":bdelete <CR>", "Quit Buffer" },
             h = { ":BufferLineMovePrev<CR>", "Move Left" },
             l = { ":BufferLineMoveNext<CR>", "Move Right" },
+        },
+        d = {
+            name = "dotfiles",
+            p = { ":e $MYVIMRC<CR>", "vimrc" },
+            o = { ":e ~/.org<CR>", "org" },
+            h = { ":e ~/.config/hypr/hyprland.conf<CR>", "hyprland" },
+            w = { ":e ~/.config/waybar/waybar<CR>", "waybar" }
+        },
+        e = {
+            { ":NvimTreeOpen<cr>", "Nvim Tree" },
         },
         f = {
             name = "file",
@@ -35,9 +38,14 @@ which_key.register({
             g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
             r = { ":NvimTreeOpen<cr>", "Nvim Tree" },
         },
-        s = {
-            name = "search",
-            g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+        h = {
+            s = { ':Gitsigns stage_hunk<CR>', "Stage Hunk" },
+            r = { ':Gitsigns reset_hunk<CR>', "Unset Hunk" },
+            S = { 'gs.stage_buffer', "Stage Buffer" },
+            u = { 'gs.undo_stage_hunk', "Undo Hunk" },
+            R = { 'gs.reset_buffer', "Reset Buffer" },
+            p = { 'gs.preview_hunk', "Preview" },
+            b = { 'function() gs.blame_line{full=true} end', "Blame Line" },
         },
         l = {
             name = "LSP",
@@ -55,24 +63,25 @@ which_key.register({
             E = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Diag list" },
             e = { "<cmd>lua vim.diagnostic.open_float()<CR>", "Open Error" },
         },
-        h = {
-            s = { ':Gitsigns stage_hunk<CR>', "Stage Hunk" },
-            r = { ':Gitsigns reset_hunk<CR>', "Unset Hunk" },
-            S = { 'gs.stage_buffer', "Stage Buffer" },
-            u = { 'gs.undo_stage_hunk', "Undo Hunk" },
-            R = { 'gs.reset_buffer', "Reset Buffer" },
-            p = { 'gs.preview_hunk', "Preview" },
-            b = { 'function() gs.blame_line{full=true} end', "Blame Line" },
-        },
         L = {
-            name = "latex",
-            c = { ":VimtexClean<CR>", "clean" },
-            C = { ":VimtexClean!<CR>", "clean pdf" },
-            v = { ":VimtexView<CR>", "view" },
-            r = { ":VimTexRSearch<CR>", "reverse search" },
-            e = { ":VimtexError<CR>", "check error" },
-            l = { ":VimtexCompile<CR>", "toggle compile" },
-            L = { ":VimtexCompile<CR>", "toggle compile" },
+            -- name = "latex",
+            -- c = { ":VimtexClean<CR>", "clean" },
+            -- C = { ":VimtexClean!<CR>", "clean pdf" },
+            -- v = { ":VimtexView<CR>", "view" },
+            -- r = { ":VimTexRSearch<CR>", "reverse search" },
+            -- e = { ":VimtexError<CR>", "check error" },
+            -- l = { ":VimtexCompile<CR>", "toggle compile" },
+            -- L = { ":VimtexCompile<CR>", "toggle compile" },
+        },
+        s = {
+            name = "search",
+            g    = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+        },
+        S = {
+            name = "spell",
+            o    = { ":set spell spelllang=en_us<cr>", "spell on" },
+            q    = { ":set nospell<cr>", "spell off" },
+            s    = { "z=", "spell correction" },
         }
     },
     {

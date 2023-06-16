@@ -4,4 +4,4 @@ ROOT=~/.config/swaylock/
 # Modify if multiple monitors are used 
 grim $ROOT/screenshot_0.png
 convert $ROOT/screenshot_0.png -filter Gaussian -blur 0x5 $ROOT/screenshot.png
-swaylock -i $ROOT/screenshot.png --indicator-radius 60
+swaylock -f -i $ROOT/screenshot.png --indicator-radius 60

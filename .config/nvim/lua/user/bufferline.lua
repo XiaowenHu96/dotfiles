@@ -1,18 +1,15 @@
-local status_ok, bufferline = pcall(require, "bufferline")
-if not status_ok then
-    print "Cannot load bufferline"
-    return
-end
+local bufferline         = require("bufferline")
 
-local highlights = {}
+local highlights         = {}
 -- use nord bufferline if it is loaded
 local loaded_colorscheme = vim.g.colors_name
 if loaded_colorscheme == "nord" then
     highlights = require("nord").bufferline.highlights({
-        italic = true,
-        bold = true,
-        buffer_bg_selected  = "#4c566A",
-        bg  = "#3B4252",
+        italic             = true,
+        bold               = true,
+        buffer_bg_selected = "#4c566A",
+        buffer_bg          = "#4c566A",
+        bg                 = "#3B4252",
         buffer_bg_visible  = "#3B4252",
     })
 end
@@ -21,7 +18,7 @@ bufferline.setup({
     highlights = highlights,
     options = {
         mode = "buffers",                    -- set to "tabs" to only show tabpages instead
-        numbers = "buffer_id",
+        numbers = "ordinal",
         close_command = "bdelete! %d",       -- can be a string | function, | false see "Mouse actions"
         right_mouse_command = "bdelete! %d", -- can be a string | function | false, see "Mouse actions"
         left_mouse_command = "buffer %d",    -- can be a string | function, | false see "Mouse actions"

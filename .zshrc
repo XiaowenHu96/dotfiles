@@ -126,5 +126,6 @@ export PATH="/opt/riscv/bin/:$PATH"
 # FTP_PROXY=$http_proxy
 # export http_proxy
 # export https_proxy
+source ~/.secret_api
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -15,11 +15,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
     vim.cmd [[packadd packer.nvim]]
 end
 
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-    print "Could not load packer..."
-    return
-end
+local packer = require("packer")
 
 -- Have packer use a popup window
 packer.init {
@@ -41,12 +37,12 @@ vim.cmd([[
 -- Plugins goes here
 return packer.startup(function(use)
     -- basics
-    use "wbthomason/packer.nvim"         -- Have packer manage itself
-    use "nvim-lua/popup.nvim"            -- An implementation of the Popup API from vim in Neovim
-    use "nvim-lua/plenary.nvim"          -- Useful lua functions used lots of plugins
-    --
-    use "christoomey/vim-tmux-navigator" -- navigate seamlessly between vim and tmux
-    use {                                -- rainbow parenthesis
+    use "wbthomason/packer.nvim"          -- Have packer manage itself
+    use "nvim-lua/popup.nvim"             -- An implementation of the Popup API from vim in Neovim
+    use "nvim-lua/plenary.nvim"           -- Useful lua functions used lots of plugins
+    -- Misc
+    use "alexghergh/nvim-tmux-navigation" -- moved from vim-tmux-navigator
+    use {                                 -- rainbow parenthesis
         "luochen1990/rainbow",
         ft = { 'lisp', 'scheme' }
     }
@@ -57,26 +53,35 @@ return packer.startup(function(use)
     use "tpope/vim-commentary"        -- comment stuff out (see Comment.nvim and ts-context comment if looking for an upgrade)
     use 'vim-scripts/ReplaceWithRegister'
     use 'norcalli/nvim-colorizer.lua' -- The fastest Neovim colorizer.
-    use 'mhinz/vim-startify'          -- The fancy start screen for Vim. (Also a session manager)
-    use 'windwp/nvim-autopairs'       -- autopair neovim version
-    use 'vimwiki/vimwiki'             -- vimwiki
-    use 'godlygeek/tabular'           -- vim tabular
-    use 'tpope/vim-rhubarb'           -- Add GBrowse feature for fugitive
-    use "folke/which-key.nvim"        -- WhichKey neovim (I switched from vim-which-key)
+    use 'mhinz/vim-startify'          -- switch to dashboard
+    -- use {
+    --     'glepnir/dashboard-nvim',
+    --     requires = { 'nvim-tree/nvim-web-devicons' }
+    -- }
+    use 'windwp/nvim-autopairs' -- autopair neovim version
+    use 'vimwiki/vimwiki'       -- vimwiki -- switched to nvim-org
+    use 'nvim-orgmode/orgmode'
+    use 'godlygeek/tabular'     -- vim tabular
+    use 'tpope/vim-rhubarb'     -- Add GBrowse feature for fugitive
+    use "folke/which-key.nvim"  -- WhichKey neovim (I switched from vim-which-key)
     use {
         'nvim-telescope/telescope.nvim', branch = '0.1.x',
-        requires = {
-            { 'nvim-lua/plenary.nvim',
-                'BurntSushi/ripgrep', -- also require ripgrep on system
-                'sharkdp/fd',
-                { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } } }
+        requires =
+        { 'nvim-lua/plenary.nvim',
+            'BurntSushi/ripgrep',
+            'sharkdp/fd',
+            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' } }
     }
     use 'lewis6991/gitsigns.nvim' -- Moved from vim-gitgutter
     use 'nvim-tree/nvim-tree.lua'
     use 'folke/todo-comments.nvim'
-    use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
     use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
-    use { 'lervag/vimtex' }
+    use { 'lervag/vimtex' } -- disable vimtex in favour of texlab
+    use { "akinsho/toggleterm.nvim" }
+
+    -- lualine
+    use { 'nvim-lualine/lualine.nvim', requires = { 'nvim-tree/nvim-web-devicons', opt = true } }
+    use 'arkav/lualine-lsp-progress'
     --- completion
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
@@ -90,6 +95,8 @@ return packer.startup(function(use)
     use "williamboman/mason-lspconfig.nvim"
     use "neovim/nvim-lspconfig"
     use 'lvimuser/lsp-inlayhints.nvim' -- temporary tool for inlay support.
+    use 'jose-elias-alvarez/null-ls.nvim'
+
     -- snip
     use 'L3MON4D3/LuaSnip'
     use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
@@ -97,6 +104,20 @@ return packer.startup(function(use)
     -- treesitter
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'nvim-treesitter/playground'
+
+    -- copilot
+    use 'github/copilot.vim'
+    use 'hrsh7th/cmp-copilot'
+
+    -- chatgpt
+    use({
+        "jackMort/ChatGPT.nvim",
+        requires = {
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim"
+        }
+    })
 
     -- colorscheme
     use 'shaunsingh/nord.nvim'

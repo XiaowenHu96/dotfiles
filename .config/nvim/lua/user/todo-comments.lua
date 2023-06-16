@@ -1,8 +1,4 @@
-local status_ok, todo = pcall(require, "todo-comments")
-if not status_ok then
-    print "Cannot load todo-comments"
-    return
-end
+local todo = require("todo-comments")
 
 todo.setup({
     signs = false,      -- show icons in the signs column

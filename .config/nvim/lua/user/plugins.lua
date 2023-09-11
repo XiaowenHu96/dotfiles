@@ -59,11 +59,15 @@ return packer.startup(function(use)
     --     requires = { 'nvim-tree/nvim-web-devicons' }
     -- }
     use 'windwp/nvim-autopairs' -- autopair neovim version
-    use 'vimwiki/vimwiki'       -- vimwiki -- switched to nvim-org
+    use { 'vimwiki/vimwiki',    -- vimwiki -- switched to nvim-org
+        config = function()
+            vim.g.vimwiki_conceallevel = 0
+        end
+    }
     use 'nvim-orgmode/orgmode'
-    use 'godlygeek/tabular'     -- vim tabular
-    use 'tpope/vim-rhubarb'     -- Add GBrowse feature for fugitive
-    use "folke/which-key.nvim"  -- WhichKey neovim (I switched from vim-which-key)
+    use 'godlygeek/tabular'    -- vim tabular
+    use 'tpope/vim-rhubarb'    -- Add GBrowse feature for fugitive
+    use "folke/which-key.nvim" -- WhichKey neovim (I switched from vim-which-key)
     use {
         'nvim-telescope/telescope.nvim', branch = '0.1.x',
         requires =

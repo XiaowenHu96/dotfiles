@@ -120,7 +120,11 @@ return packer.startup(function(use)
     })
 
     -- colorscheme
-    use 'shaunsingh/nord.nvim'
+    use { 'shaunsingh/nord.nvim' }
+    use { 'AlexvZyl/nordic.nvim' }
+    use { "folke/tokyonight.nvim" }
+    use { "catppuccin/nvim", as = "catppuccin" }
+    use { "sainnhe/gruvbox-material" }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

@@ -20,7 +20,7 @@ local settings  = {
             package_uninstalled = "◍",
         },
     },
-    log_level = vim.log.levels.ERROR,
+    log_level = vim.log.levels.OFF,
     max_concurrent_installers = 4,
 }
 -- setup manson
@@ -56,5 +56,5 @@ for _, server in pairs(servers) do
     lspconfig[server].setup(opts)
 end
 
-vim.lsp.set_log_level("debug")
+vim.lsp.set_log_level("OFF")
 require("user.lsp.handlers").setup()

@@ -1,4 +1,4 @@
-@import "nord.css";
+@import "gruvbox_material.css";
 
 window {
     background-color: transparent;
@@ -18,8 +18,8 @@ window {
 * Left part
 */
 #mode {
-    color: @nord0;
-    background-color: @nord13;
+    color: @bg;
+    background-color: @bg;
     margin-left: 8px;
     border-radius: 5px;
     padding: 0px 6px;
@@ -27,20 +27,19 @@ window {
 
 #workspaces button {
     margin-left: 8px;
-    background-color: @nord3;
+    background-color: @bg;
     padding: 0px 4px;
-    color: @nord6;
+    color: @fg2;
     margin-top: 0;
 }
 
-#workspaces button.focused {
-    color: @nord0;
-    background-color: @nord8;
+#workspaces button.active {
+    background-color: @bg3;
 }
 
 #window {
     margin-left: 10px;
-    color: @nord6;
+    color: @fg1;
     font-weight: bold;
     padding: 0px 5px;
 }
@@ -57,9 +56,9 @@ window {
 #battery,
 #clock,
 #tray {
-    background-color: @nord2;
+    background-color: @bg2;
     padding: 0px 8px;
-    color: @nord6;
+    color: @fg1;
 }
 
 #backlight,
@@ -81,41 +80,60 @@ window {
 }
 
 #pulseaudio.muted {
-    background-color: @nord13;
-    color: @nord3;
+    background-color: @fg0;
+    color: @bg3;
 }
 
 #pulseaudio, #backlight {
-    background-color: @nord10;
+    color: #e2cca9;
+    background-color: @bg0;
 }
 
 #network, #cpu, #memory, #battery {
-    background-color: @nord3;
+    background-color: @bg3;
+    color: @fg3;
+}
+
+#clock {
+    color: @hl3;
+}
+
+#battery {
+    color: @hl1;
+}
+#network {
+    color: @hl2;
+}
+#cpu {
+    color: @fg2;
+}
+#memort {
+    color: @fg3;
 }
 
 #tray {
-    background-color: @nord1;
+    background-color: @bg1;
 }
 
 #network.disabled, 
 #network.disconnected {
-    background-color: @nord13;
-    color: @nord0; 
+    background-color: @hl3;
+    color: @bg0; 
 }
 
 #battery.warning {
-    background-color: @nord13;
-    color: @nord0; 
+    background-color: @hl3;
+    color: @bg0; 
 }
 
 #battery.critical {
-    background-color: @nord11;
-    color: @nord0; 
+    background-color: @hl4;
+    color: @bg0; 
 }
 
 #tray menu {
-    background-color: @nord2;
-    color: @nord4;
+    background-color: @bg3;
+    color: @fg1;
     padding: 10px 5px;
-    border: 2px solid @nord1;
+    border: 2px solid @bg1;
 }

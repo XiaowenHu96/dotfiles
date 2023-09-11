@@ -1,0 +1,94 @@
+* {
+	nord0: #ebcb8b;
+	nord1: #3b4252;
+	nord2: #434c5e;
+	nord3: #4c566a;
+
+	nord4: #d8dee9;
+	nord5: #e5e9f0;
+	nord6: #eceff4;
+
+	nord7: #8fbcbb;
+	nord8: #88c0d0;
+	nord9: #81a1c1;
+	nord10: #5e81ac;
+	nord11: #bf616a;
+
+	nord12: #d08770;
+	nord13: #ebcb8b;
+	nord14: #a3be8c;
+	nord15: #b48ead;
+
+    foreground:  @nord9;
+    backlight:   #ccffeedd;
+    background-color:  transparent;
+    
+    highlight:     underline bold #e9b343;
+
+    transparent: rgba(46,52,64,0);
+}
+
+window {
+    location: center;
+    anchor:   center;
+    transparency: "screenshot";
+    padding: 10px;
+    border:  0px;
+    border-radius: 6px;
+
+    background-color: @transparent;
+    spacing: 0;
+    children:  [mainbox];
+    orientation: horizontal;
+}
+
+mainbox {
+    spacing: 0;
+    children: [ inputbar, message, listview ];
+}
+
+inputbar {
+    color: @nord6;
+    padding: 11px;
+    background-color: #45403d;
+
+    border: 1px;
+    border-radius:  6px 6px 0px 0px;
+    border-color: #b0b864;
+}
+
+entry, prompt, case-indicator {
+    text-font: inherit;
+    text-color:inherit;
+}
+
+prompt {
+    margin: 0px 1em 0em 0em ;
+}
+
+listview {
+    padding: 8px;
+    border-radius: 0px 0px 6px 6px;
+    border-color: #b0b864;
+    border: 0px 1px 1px 1px;
+    background-color: #32302f;
+    dynamic: false;
+}
+
+element {
+    padding: 3px;
+    vertical-align: 0.5;
+    border-radius: 4px;
+    background-color: transparent;
+    color: @foreground;
+    text-color: #e2cca9;
+}
+
+element selected.normal {
+	background-color: #45403d;
+}
+
+element-text, element-icon {
+    background-color: inherit;
+    text-color:       inherit;
+}

@@ -13,6 +13,13 @@ if loaded_colorscheme == "nord" then
         buffer_bg_visible  = "#3B4252",
     })
 end
+if loaded_colorscheme == "gruvbox-material" then
+    highlights = {
+        fill  = {
+            bg = '#282828',
+        },
+    }
+end
 
 bufferline.setup({
     highlights = highlights,

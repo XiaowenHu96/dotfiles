@@ -1,0 +1,46 @@
+/**
+ * Xiaowen
+ * src: https://user-images.githubusercontent.com/58662350/213884044-fdd95ba6-d75c-4983-8297-f5b39d794027.png
+ */
+
+/* BG */
+/* @define-color bg0 #1b1b1b */
+/* @define-color bg0 #282828; */
+/* @define-color bg1 #282828; */
+/* @define-color bg2 #32302f; */
+/* @define-color bg3 #45403d; */
+@define-color bg #282828;
+@define-color bg0 @bg;
+@define-color bg1 @bg;
+@define-color bg2 @bg;
+@define-color bg3 #32302f;
+/* @define-color #45403d */
+/* @define-color #5a524c */
+/* @define-color #32302f */
+/* @define-color #3a3735 */
+/* @define-color #504945 */
+/* @define-color #34381b */
+/* @define-color #3b4439 */
+/* @define-color #402120 */
+/* @define-color #4c3432 */
+/* @define-color #0e363e */
+/* @define-color #374141 */
+/* @define-color #4f422e */
+/* @define-color #3c3836 */
+/* @define-color #e2cca9 */
+/* @define-color #e2cca9 */
+/* @define-color #f2594b */
+/* @define-color #f28534 */
+@define-color fg0 #f28534;
+@define-color fg1 #e78a4e;
+@define-color fg2 #e9b343;
+@define-color fg3 #ebcb8b;
+@define-color hl0 #b0b846;
+@define-color hl1 #8bba7f;
+@define-color hl2 #80aa9e;
+@define-color hl3 #d3869b;
+@define-color hl4 #db4740;
+@define-color hl5 #b0b846;
+@define-color hl6 #374141;
+@define-color hl7 #4f422e;
+@define-color hl8 #3c3836;

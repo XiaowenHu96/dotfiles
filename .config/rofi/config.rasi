@@ -147,7 +147,7 @@ configuration {
   }
 }
 
-@theme "nord"
+@theme "gruvbox"
 
 entry {
     placeholder: "";

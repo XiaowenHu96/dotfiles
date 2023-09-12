@@ -17,7 +17,7 @@ which_key.register({
         },
         b = {
             name = "buffer",
-            q = { ":bdelete <CR>", "Quit Buffer" },
+            q = { ":MyBufferLineCloseCur<CR>", "Quit Buffer" },
             h = { ":BufferLineMovePrev<CR>", "Move Left" },
             l = { ":BufferLineMoveNext<CR>", "Move Right" },
         },

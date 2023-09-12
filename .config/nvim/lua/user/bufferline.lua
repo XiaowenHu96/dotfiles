@@ -21,6 +21,25 @@ if loaded_colorscheme == "gruvbox-material" then
     }
 end
 
+-- Close the current buffer while moving to the next buffer
+-- This is so we can avoid the split being closed when the buffer is closed
+-- NB: this is different from the 'close_command' in bufferline settings,
+-- which only applies to CloseLeft/Right actions.
+-- Bufferline does not have a CloseCurrent cmd atm.
+vim.api.nvim_create_user_command(
+    "MyBufferLineCloseCur",
+    function()
+        local elements_tbl = bufferline.get_elements()
+        if (elements_tbl.mode ~= "buffers") then
+            return
+        end
+        local bufnr = vim.api.nvim_get_current_buf()
+        bufferline.cycle(1);
+        vim.cmd("bdelete!" .. bufnr)
+    end,
+    {}
+)
+
 bufferline.setup({
     highlights = highlights,
     options = {

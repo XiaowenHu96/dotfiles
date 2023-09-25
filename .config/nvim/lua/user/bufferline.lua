@@ -15,7 +15,7 @@ if loaded_colorscheme == "nord" then
 end
 if loaded_colorscheme == "gruvbox-material" then
     highlights = {
-        fill  = {
+        fill = {
             bg = '#282828',
         },
     }
@@ -77,7 +77,6 @@ bufferline.setup({
         color_icons = true, -- whether or not to add the filetype icon highlights
         show_buffer_icons = true,
         show_buffer_close_icons = true,
-        show_buffer_default_icon = true,
         show_close_icon = true,
         show_tab_indicators = true,
         show_duplicate_prefix = true,

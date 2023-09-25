@@ -10,10 +10,11 @@ local function session_name()
 end
 
 vim.api.nvim_create_augroup("Startify", { clear = true })
--- auto load
+-- auto session
 vim.api.nvim_create_autocmd("User", {
     group = "Startify",
     pattern = { "StartifyReady" },
+    nested = true, -- https://github.com/neovim/neovim/issues/8136
     callback = function()
         -- do not load if in headless mode
         local headless = vim.tbl_isempty(vim.api.nvim_list_uis())
@@ -33,7 +34,6 @@ vim.api.nvim_create_autocmd("User", {
         if not (load == "y") then return end
         local execute = "SLoad " .. branch
         vim.cmd(execute)
-        vim.cmd(":filetype detect") -- update file type
     end
 })
 -- auto save

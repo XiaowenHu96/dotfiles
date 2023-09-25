@@ -15,9 +15,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     -- basics
-    { "wbthomason/packer.nvim" },          -- Have packer manage itself
     { "nvim-lua/popup.nvim" },             -- An implementation of the Popup API from vim in Neovim
     { "nvim-lua/plenary.nvim" },           -- Useful lua functions used lots of plugins
+    { 'MunifTanjim/nui.nvim' },            -- UI Component Library for Neovim.
     -- Misc
     { "alexghergh/nvim-tmux-navigation" }, -- moved from vim-tmux-navigator
     {

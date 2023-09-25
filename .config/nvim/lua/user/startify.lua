@@ -9,6 +9,52 @@ local function session_name()
     return repo_name .. ":" .. branch
 end
 
+local function StartifyLoadSessionMenu(session)
+    local Menu = require("nui.menu")
+    local title = "Load session " .. session .. "?"
+
+    local popup_options = {
+        relative = "editor",
+        position = "50%",
+        border = {
+            style = "rounded",
+            text = {
+                top = title,
+                top_align = "center",
+            },
+        },
+        win_options = {
+            winhighlight = "Normal:Normal",
+        }
+    }
+
+    local menu = Menu(popup_options, {
+        lines = {
+            Menu.separator(""),
+            Menu.item("Yes"),
+            Menu.item("No"),
+        },
+        min_width = vim.api.nvim_strwidth(title),
+        max_width = vim.api.nvim_strwidth(title),
+        keymap = {
+            focus_next = { "j", "<Down>", "<Tab>" },
+            focus_prev = { "k", "<Up>", "<S-Tab>" },
+            close = { "<Esc>", "<C-c>", "q" },
+            submit = { "<CR>", "<Space>" },
+        },
+        on_close = function()
+        end,
+        on_submit = function(item)
+            vim.print(item)
+            if string.find(item.text, "Yes") then
+                local execute = "SLoad " .. session
+                vim.cmd(execute)
+            end
+        end,
+    })
+    menu:mount()
+end
+
 vim.api.nvim_create_augroup("Startify", { clear = true })
 -- auto session
 vim.api.nvim_create_autocmd("User", {
@@ -21,19 +67,7 @@ vim.api.nvim_create_autocmd("User", {
         if headless then return end
         local branch = session_name()
         if branch == "" then return end
-        local load
-        vim.ui.input({
-                prompt = "Detect startify session " .. branch .. ", load? (y/n)",
-                default = "y",
-            },
-            function(input)
-                if input == nil then input = "n" end
-                load = string.lower(input)
-            end
-        )
-        if not (load == "y") then return end
-        local execute = "SLoad " .. branch
-        vim.cmd(execute)
+        StartifyLoadSessionMenu(branch)
     end
 })
 -- auto save

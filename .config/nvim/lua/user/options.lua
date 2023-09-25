@@ -50,3 +50,11 @@ vim.api.nvim_create_autocmd('BufRead', {
         })
     end,
 })
+
+-- TODO: https://github.com/neovim/neovim/issues/21856
+vim.api.nvim_create_autocmd({ "VimLeave" }, {
+  callback = function()
+    vim.cmd('!notify-send  "hello"')
+    vim.cmd('sleep 10m')
+  end,
+})

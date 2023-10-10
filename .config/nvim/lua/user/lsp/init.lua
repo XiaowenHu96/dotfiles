@@ -8,7 +8,8 @@ local servers   = {
     "texlab",
     "pyright",
     "gopls",
-    "clangd"
+    "clangd",
+    "tsserver"
 }
 
 local settings  = {

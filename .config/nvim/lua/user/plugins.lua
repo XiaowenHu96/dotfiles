@@ -34,11 +34,16 @@ require("lazy").setup({
     { 'norcalli/nvim-colorizer.lua' }, -- The fastest Neovim colorizer.
     { 'mhinz/vim-startify' },          -- switch to dashboard
     { 'windwp/nvim-autopairs' },       -- autopair neovim version
+    -- {
+    --     'vimwiki/vimwiki',             -- vimwiki -- switched to nvim-org
+    --     config = function()
+    --         vim.g.vimwiki_conceallevel = 0
+    --     end
+    -- },
     {
-        'vimwiki/vimwiki',             -- vimwiki -- switched to nvim-org
-        config = function()
-            vim.g.vimwiki_conceallevel = 0
-        end
+        "nvim-neorg/neorg",
+        build = ":Neorg sync-parsers",
+        dependencies = { "nvim-lua/plenary.nvim" },
     },
     { 'nvim-orgmode/orgmode' },
     { 'godlygeek/tabular' },    -- vim tabular
@@ -51,7 +56,7 @@ require("lazy").setup({
         { 'nvim-lua/plenary.nvim',
             'BurntSushi/ripgrep',
             'sharkdp/fd',
-        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
         }
     },
     { 'lewis6991/gitsigns.nvim' }, -- Moved from vim-gitgutter
@@ -101,15 +106,14 @@ require("lazy").setup({
     { 'hrsh7th/cmp-copilot' },
 
     -- chatgpt
-    -- TODO: Choose alternative or re-config
-    -- {
-    --     "jackMort/ChatGPT.nvim",
-    --     dependencies = {
-    --         "MunifTanjim/nui.nvim",
-    --         "nvim-lua/plenary.nvim",
-    --         "nvim-telescope/telescope.nvim"
-    --     }
-    -- },
+    {
+        "jackMort/ChatGPT.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim"
+        }
+    },
 
     -- colorscheme
     { 'shaunsingh/nord.nvim' },

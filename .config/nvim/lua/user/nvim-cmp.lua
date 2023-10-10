@@ -43,6 +43,35 @@ local kind_icons = {
     TypeParameter = "",
 }
 
+-- Vscode icons
+kind_icons = {
+  Text = '  ',
+  Method = '  ',
+  Function = '  ',
+  Constructor = '  ',
+  Field = '  ',
+  Variable = '  ',
+  Class = '  ',
+  Interface = '  ',
+  Module = '  ',
+  Property = '  ',
+  Unit = '  ',
+  Value = '  ',
+  Enum = '  ',
+  Keyword = '  ',
+  Snippet = '  ',
+  Color = '  ',
+  File = '  ',
+  Reference = '  ',
+  Folder = '  ',
+  EnumMember = '  ',
+  Constant = '  ',
+  Struct = '  ',
+  Event = '  ',
+  Operator = '  ',
+  TypeParameter = '  ',
+}
+
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -84,6 +113,7 @@ cmp.setup({
         { name = 'luasnip' },
         { name = 'buffer' },
         { name = 'path' },
+        { name = 'neorg' },
     },
     formatting = {
         fields = { "kind", "abbr", "menu" },
@@ -97,10 +127,23 @@ cmp.setup({
                 omni = "[OMNI]",
                 copilot = "",
                 orgmode = "[ORG]",
+                neorg = "[NEORG]",
             })[entry.source.name]
             return vim_item
         end,
     },
+})
+
+-- NEORG settings
+cmp.setup.filetype({ 'norg'}, {
+    sources = {
+        { name = 'neorg' },
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+        { name = 'copilot' },
+        { name = 'path' },
+        { name = 'buffer' },
+    }
 })
 
 -- omni is only laded for latex files
@@ -114,12 +157,12 @@ cmp.setup.filetype({ 'latex', 'tex' }, {
     }
 })
 
-cmp.setup.filetype({ 'org' }, {
-    sources = {
-        { name = 'orgmode' },
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-        { name = 'buffer' },
-        { name = 'path' },
-    }
-})
+-- cmp.setup.filetype({ 'org' }, {
+--     sources = {
+--         { name = 'orgmode' },
+--         { name = 'nvim_lsp' },
+--         { name = 'luasnip' },
+--         { name = 'buffer' },
+--         { name = 'path' },
+--     }
+-- })
